@@ -13,4 +13,11 @@
 
 Auth::routes();
 
-Route::get('/', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('index');
+
+// ### ADMIN PANEL ### //
+Route::group(['prefix' => '/admin', 'middleware' => 'isAdmin'], function() {
+
+	Route::get('/', 'AdminController@index')->name('admin.index');
+
+});
