@@ -33,7 +33,6 @@ define(['jquery','app/handler/form','app/ui-mod/BS-Notify'], ($, handler, BSNoti
 				style: 'success',
 				icon: 'check',
 				message: 'Your book was successfully created!',
-				side: 'right',
 			})
 		})
 		.fail(res => FormHandler.displayErrors(e.target, res.responseJSON.errors))
