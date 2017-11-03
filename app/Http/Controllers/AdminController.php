@@ -8,6 +8,16 @@ use Illuminate\Http\Request;
 class AdminController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct() 
+    {
+        $this->middleware('isAdmin');
+    }
+
+    /**
      * Show the application index.
      *
      * @return \Illuminate\Http\Response
@@ -24,7 +34,7 @@ class AdminController extends Controller
      */
     public function addDesiredBook()
     {
-      return view('admin.add.desired-book');
+        return view('admin.add.desired-book');
     }
 
     /**
@@ -45,15 +55,15 @@ class AdminController extends Controller
      */
     public function createDesiredBook(Request $request) 
     {
-      $this->validate($request, [
-        'isbn' => 'required|string|min:8|max:15|unique:books',
-        'price' => 'required|numeric|min:5|max:10000',
-      ]);
+        $this->validate($request, [
+            'isbn' => 'required|string|min:8|max:15|unique:books',
+            'price' => 'required|numeric|min:5|max:10000',
+        ]);
 
-      return Book::create([
-        'isbn' => $request->isbn,
-        'price' => $request->price,
-      ]);
+        return Book::create([
+            'isbn' => $request->isbn,
+            'price' => $request->price,
+        ]);
     }
 
 }
