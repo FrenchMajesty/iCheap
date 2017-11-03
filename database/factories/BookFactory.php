@@ -7,8 +7,8 @@ use Faker\Generator as Faker;
 $factory->define(App\Book::class, function(Faker $faker) {
 
 	return [
-		'isbn' => $faker->random()->number,
-		'price' => $faker->commerce()->price,
+		'isbn' => $faker->randomNumber(),
+		'price' => $faker->randomFloat(2),
 	];
 });
 
