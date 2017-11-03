@@ -1,6 +1,6 @@
 
 requirejs.config({
-	baseUrl: '/cheapbooks/public/js/lib',
+	baseUrl: '/iCheap/public/js/lib',
 	paths: {
 		app: '../app',
 		jquery: '//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min',
