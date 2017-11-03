@@ -37,7 +37,7 @@
                 </div>
             </div>
 			<div id="book" class="col-md-4">
-				<div class="card card-profile">
+				<div class="card card-profile container">
 					<div class="content"><br/>
 						<span class="category text-gray">Enter the Book's ISBN to Load its Information</span>
 						<h4 class="card-title">Title</h4>
