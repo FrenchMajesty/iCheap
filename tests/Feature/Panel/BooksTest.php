@@ -15,9 +15,13 @@ class BooksTest extends TestCase
 
     private $admin;
 
+    /**
+     * Set up the test case
+     */
     public function setUp()
     {
         parent::setUp();
+        
         $this->admin = factory(User::class)->create([
             'account' => 'admin',
             'rank' => 2,
@@ -40,7 +44,7 @@ class BooksTest extends TestCase
                         'isbn' => $book->isbn,
                         'price' => $book->price,
                     ]);
-                    
+
         // Then it should be created and exist in the database
         $response->assertStatus(200);
         $this->assertDatabaseHas('books', [
