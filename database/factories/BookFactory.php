@@ -7,7 +7,7 @@ use Faker\Generator as Faker;
 $factory->define(App\Book::class, function(Faker $faker) {
 
 	return [
-		'isbn' => $faker->randomNumber(10),
+		'isbn' => $faker->isbn10,
 		'price' => $faker->randomFloat(2, 5, 10000),
 	];
 });
