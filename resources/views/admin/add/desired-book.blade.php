@@ -25,11 +25,11 @@
                                 <div class="col-md-6">
 									<div class="form-group label-floating is-empty">
 										<label class="control-label">Price</label>
-										<input type="number" name="price" class="form-control" required>
+										<input type="number" name="price" class="form-control" step="any" required>
 									<span class="material-input"></span></div>
                                 </div>
                             </div>
-
+                            <section class="error"></section>
                             <button type="submit" class="btn btn-info btn-lg col-md-4 pull-right">Add the New Book</button>
                             <div class="clearfix"></div>
                         </form>
@@ -53,4 +53,7 @@
 @endsection
 
 @section('js')
+<script>
+	requirejs(['app/pages/admin/add-book'])
+</script>
 @endsection
