@@ -6,10 +6,9 @@
     | This module is for the JavaScript on the page to add a desired book.
     |
     */
-define(['jquery','app/handler/form','app/ui-mod/BS-Notify'], ($, handler, BSNotify) => { 
+define(['jquery','app/handler/form','app/ui-mod/BS-Notify','config'], ($, handler, BSNotify, appConfig) => { 
 	
 	const FormHandler = handler()
-
 	const module = {}
 		
 	/**
@@ -36,6 +35,42 @@ define(['jquery','app/handler/form','app/ui-mod/BS-Notify'], ($, handler, BSNoti
 			})
 		})
 		.fail(res => FormHandler.displayErrors(e.target, res.responseJSON.errors))
+	}
+
+	/**
+	 * Fetch the book details from Google Library API and display on page
+	 * @param  {Event} e Blur event
+	 * @return {Void}   
+	 */
+	function loadBookDetails(e) {
+		if(!e.target.value) return
+
+		const bookDetailsContainer = $('#book')
+
+		$.ajax(`https://www.googleapis.com/books/v1/volumes?q=isbn:${e.target.value}&${appConfig.google.key}`)
+		.then(res => {
+			if(res.totalItems > 0) {
+				const book = res.items[0].volumeInfo
+				const info = [
+					`<p>Publisher: ${book.publisher} on ${book.publishedDate}</p>`,
+					`<p>Author${book.authors.length > 1 ? 's' : ''}: ${book.authors.join(', ')}</p>`,
+				].join('')
+
+				bookDetailsContainer.find('h4').text(`${book.title} ${book.subtitle}`)
+				bookDetailsContainer.find('p').html(info)
+
+				if(bookDetailsContainer.find('img')[0]) {
+					bookDetailsContainer.find('img').attr('src', book.imageLinks.thumbnail)
+				}else {
+					bookDetailsContainer.find('h4')
+						.before(`<img src="${book.imageLinks.thumbnail}" style="width: auto">`)
+				}
+			}else {
+				bookDetailsContainer.find('h4').text('Book details could not be found')
+				bookDetailsContainer.find('img').remove()
+				bookDetailsContainer.find('p').text('')
+			}
+		}) 
 	} 
 
 	/**
@@ -44,6 +79,7 @@ define(['jquery','app/handler/form','app/ui-mod/BS-Notify'], ($, handler, BSNoti
 	 */
 	function bindUIEvents() {
 		$('form').on('submit', handleCreateBook)
+		$('[name="isbn"]').on('blur', loadBookDetails)
 		$('form input').on('input keydown change', FormHandler.clearErrors)
 	}
 
