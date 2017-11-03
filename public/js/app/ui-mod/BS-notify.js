@@ -29,7 +29,7 @@ define(['jquery','bootstrap-notify'], ($) => {
 			timer: options.timer || 4000,
 			placement: {
 				from: options.align || 'top',
-				align: options.side || 'left',
+				align: options.side || 'right',
 			},
 		})
 	}
