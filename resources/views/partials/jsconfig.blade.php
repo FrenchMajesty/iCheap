@@ -9,5 +9,8 @@
     	recaptcha: {
     		key: '{{env('GOOGLE_RECAPTCHA_KEY')}}',
     	},
+        google: {
+            key: '{{env('GOOGLE_API_KEY')}}',
+        },
     })
 </script>
