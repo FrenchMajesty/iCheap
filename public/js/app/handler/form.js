@@ -101,7 +101,7 @@ define(['jquery','config'], ($, appConfig) => {
 
         /**
          * Clear the errors of a form container
-         * @param  {Event} event
+         * @param  {Event} Change event
          * @return {Void}
          */
          module.clearErrors = (e) => {
