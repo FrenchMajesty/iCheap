@@ -156,5 +156,6 @@
     
     <!-- Main Script -->
     <script src="js/main.js"></script>
+    @yield('js')
   </body>
 </html>
