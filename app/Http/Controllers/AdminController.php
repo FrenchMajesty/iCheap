@@ -18,6 +18,16 @@ class AdminController extends Controller
     }
 
     /**
+     * Show the page to add a new desired book
+     *
+     * @return \Illuminate\Http\Response 
+     */
+    public function addDesiredBook()
+    {
+      return view('admin.add.desired-book');
+    }
+
+    /**
      * Show the management page for books
      * @param  \Illuminate\Http\Request $request Request
      * @return \Illuminate\Http\Response           
@@ -27,4 +37,23 @@ class AdminController extends Controller
    		$books = Book::all();
    		return view('admin.books', compact('books'));
    	}
+
+    /**
+     * Handle request to create a new desired book
+     * @param  \Illuminate\Http\Request $request Request
+     * @return \App\Book           
+     */
+    public function createDesiredBook(Request $request) 
+    {
+      $this->validate($request, [
+        'isbn' => 'required|string|min:8|max:15|unique:books',
+        'price' => 'required|numeric|max:10',
+      ]);
+
+      return Book::create([
+        'isbn' => $request->isbn,
+        'price' => $request->price,
+      ]);
+    }
+
 }

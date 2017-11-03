@@ -22,4 +22,8 @@ Route::group(['prefix' => '/admin', 'middleware' => 'isAdmin'], function() {
 
 	Route::get('/books', 'AdminController@booksManager')->name('admin.books');
 
+	Route::get('/books/add', 'AdminController@addDesiredBook')->name('admin.books.add.desired');
+
+	Route::post('/books/add', 'AdminController@createDesiredBook')->name('admin.books.create.desired');
+
 });
