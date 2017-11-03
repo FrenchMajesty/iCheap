@@ -45,7 +45,7 @@
 	                    	<h4 class="text-center">There are no books to see here..</h4>
                         @endif
                         <div class="text-center">
-	                        <a class="btn btn-info" href="#">Add a Book</a>
+	                        <a class="btn btn-info" href="{{route('admin.books.add.desired')}}">Add a Book</a>
 	                    </div>
                     </div>
                 </div>
