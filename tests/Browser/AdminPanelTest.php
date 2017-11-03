@@ -3,6 +3,7 @@
 namespace Tests\Browser;
 
 use App\User;
+use App\Book;
 use Tests\DuskTestCase;
 use Laravel\Dusk\Browser;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -10,7 +11,7 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class AdminPanelTest extends DuskTestCase
 {
-    use RefreshDatabase;
+    use RefreshDatabase, DatabaseMigrations;
 
     /**
      * Test the ability to add a desired book.
@@ -22,24 +23,25 @@ class AdminPanelTest extends DuskTestCase
         // Given I have an admin authenticated and a book to add
         $user = factory(User::class)->create([
             'account' => 'admin',
-            'rank' => 1,
+            'rank' => 2,
         ]);
 
-        $isbn = '0486134768';
+        $book = factory(Book::class)->make();
 
         // When a desired book is added
-        $this->browse(function($browser) use ($user, $isbn) {
+        $this->browse(function($browser) use ($user, $book) {
             $browser->loginAs($user)
                     ->visit('/admin/books/add')
-                    ->type('isbn', $isbn)
-                    ->type('price', '50.48')
+                    ->type('isbn', $book->isbn)
+                    ->type('price', $book->price)
                     ->press('ADD THE NEW BOOK')
-                    ->assertSee('Book was successfully created');
+                    ->waitFor('[data-notify="message"]')
+                    ->assertSee('successfully created');
         });
 
         // Then it should be created and exist in the database
         $this->assertDatabaseHas('books', [
-            'isbn' => $isbn,
+            'isbn' => $book->isbn,
         ]);
     }
 }
