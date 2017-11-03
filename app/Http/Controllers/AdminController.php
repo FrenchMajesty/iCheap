@@ -47,7 +47,7 @@ class AdminController extends Controller
     {
       $this->validate($request, [
         'isbn' => 'required|string|min:8|max:15|unique:books',
-        'price' => 'required|numeric|max:10',
+        'price' => 'required|numeric|min:5|max:10000',
       ]);
 
       return Book::create([
