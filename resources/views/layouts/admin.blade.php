@@ -18,6 +18,7 @@
     <link href="{{asset('/css/material-dashboard.css')}}" rel="stylesheet"/>
 
     <!--  CSS for Demo Purpose, don't include it in your project     -->
+    <link href="{{asset('/css/sweetalert2.css')}}" rel="stylesheet" />
     <link href="{{asset('/css/demo.css')}}" rel="stylesheet" />
 
     <!--     Fonts and icons     -->
