@@ -36,10 +36,10 @@
                     </div>
                 </div>
             </div>
-			<div class="col-md-4">
+			<div id="book" class="col-md-4">
 				<div class="card card-profile">
 					<div class="content"><br/>
-						<p class="category text-gray">Enter the Book's ISBN To load its information</p>
+						<span class="category text-gray">Enter the Book's ISBN to Load its Information</span>
 						<h4 class="card-title">Title</h4>
 						<p class="card-content">
 							Additional information..
