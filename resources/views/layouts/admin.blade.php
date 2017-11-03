@@ -50,19 +50,19 @@
                             <p>Dashboard</p>
                         </a>
                     </li>
-                    <li>
-                        <a href="#">
+                    <li {{(\Request::route()->getName() == 'admin.books') ? 'class=active' : '' }}>
+                        <a href="{{route('admin.books')}}">
                             <i class="material-icons">book</i>
                             <p>Books</p>
                         </a>
                     </li>
-                    <li>
+                    <li {{(\Request::route()->getName() == 'admin.orders') ? 'class=active' : '' }}>
                         <a href="#">
                             <i class="material-icons">local_shipping</i>
                             <p>Orders</p>
                         </a>
                     </li>
-                    <li>
+                    <li {{(\Request::route()->getName() == 'admin.users') ? 'class=active' : '' }}>
                         <a href="#">
                             <i class="material-icons">person</i>
                             <p>Users</p>
@@ -95,7 +95,6 @@
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <i class="material-icons">person</i>
-                                    <span class="notification">5</span>
                                     <p class="hidden-lg hidden-md">Profile</p>
                                 </a>
                                 <ul class="dropdown-menu">
@@ -151,5 +150,6 @@
 
         });
     </script>
+    @yield ('js')
 
 </html>
