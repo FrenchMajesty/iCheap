@@ -6,7 +6,7 @@
 		    <div class="col-md-6">
 				<div class="form-group label-floating is-empty">
 					<label class="control-label">ISBN</label>
-					<input type="text" name="isbn" class="form-control" value="@{{isbn}}" required>
+					<input type="text" name="isbn" class="form-control" value="@{{isbn}}" maxlength="15" required>
 				<span class="material-input"></span></div>
 		    </div>
 		    <div class="col-md-6">
