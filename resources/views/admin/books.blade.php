@@ -24,10 +24,10 @@
 	                            </tr></thead>
 	                            <tbody>
 	                            	@foreach($books as $book)
-		                                <tr>
+		                                <tr data-id="{{$book->id}}">
 		                                	<td>Dakota Rice</td>
-		                                	<td>{{$book->isbn}}</td>
-											<td class="text-primary">${{$book->price}}</td>
+		                                	<td data-isbn="{{$book->isbn}}">{{$book->isbn}}</td>
+											<td data-price="{{$book->price}}" class="text-primary">${{$book->price}}</td>
 		                                	<td>{{$book->status}}</td>
 											<td class="td-actions text-right">
 		                                        <button type="button" rel="tooltip" title="edit" class="btn btn-primary btn-simple btn-xs" data-original-title="Edit Book">
