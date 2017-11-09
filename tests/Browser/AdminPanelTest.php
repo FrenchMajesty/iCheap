@@ -6,13 +6,12 @@ use App\User;
 use App\Book;
 use Tests\DuskTestCase;
 use Laravel\Dusk\Browser;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class AdminPanelTest extends DuskTestCase
 {
-    use RefreshDatabase, DatabaseMigrations;
-
+    use DatabaseTransactions;
+    
     /**
      * Test the ability to add a desired book.
      *

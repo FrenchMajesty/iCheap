@@ -7,11 +7,11 @@ use App\User;
 use App\Book;
 use Tests\TestCase;
 use Laravel\Dusk\Chrome;
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class BooksTest extends TestCase
 {
-    use RefreshDatabase;
+    use DatabaseTransactions;
 
     private $admin;
 
