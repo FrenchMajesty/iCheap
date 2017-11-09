@@ -30,7 +30,7 @@
 											<td data-price="{{$book->price}}" class="text-primary">${{$book->price}}</td>
 		                                	<td>{{$book->status}}</td>
 											<td class="td-actions text-right">
-		                                        <button type="button" rel="tooltip" title="edit" class="btn btn-primary btn-simple btn-xs" data-original-title="Edit Book">
+		                                        <button type="button" rel="tooltip" data-action="edit" class="btn btn-primary btn-simple btn-xs" data-original-title="Edit Book">
 		                                            <i class="material-icons">edit</i>
 		                                        </button>
 		                                        <button type="button" rel="tooltip" title="" class="btn btn-danger btn-simple btn-xs" data-original-title="Remove">
