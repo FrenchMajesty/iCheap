@@ -9,7 +9,7 @@ use Tests\TestCase;
 use Laravel\Dusk\Chrome;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-class BooksTest extends TestCase
+class CreateBooksTest extends TestCase
 {
     use DatabaseTransactions;
 
