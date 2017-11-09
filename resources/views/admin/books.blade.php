@@ -33,7 +33,7 @@
 		                                        <button type="button" rel="tooltip" data-action="edit" class="btn btn-primary btn-simple btn-xs" data-original-title="Edit Book">
 		                                            <i class="material-icons">edit</i>
 		                                        </button>
-		                                        <button type="button" rel="tooltip" title="" class="btn btn-danger btn-simple btn-xs" data-original-title="Remove">
+		                                        <button type="button" rel="tooltip" data-action="delete" class="btn btn-danger btn-simple btn-xs" data-original-title="Remove">
 		                                            <i class="material-icons">close</i>
 		                                        <div class="ripple-container"></div></button>
 		                                    </td>
