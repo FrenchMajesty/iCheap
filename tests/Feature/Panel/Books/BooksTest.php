@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Panel;
+namespace Tests\Feature\Panel\Books;
 
 use Auth;
 use App\User;
