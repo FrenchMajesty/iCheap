@@ -83,7 +83,7 @@ define(['jquery','config'], ($, appConfig) => {
 
             module.loadAjaxSettings()
             return $.ajax(url, {
-                type: 'POST',
+                type: 'DELETE',
                 data: formData,
                 contentType: false,
                 processData: false,
