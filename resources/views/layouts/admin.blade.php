@@ -122,6 +122,7 @@
     </div>
 
 </body>
+    @include('partials.htmltemplates')
     @include('partials.jsconfig')
     <!--   Core JS Files   -->
     <script src="{{asset('/js/jquery-3.1.0.min.js')}}" type="text/javascript"></script>
