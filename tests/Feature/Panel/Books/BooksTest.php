@@ -30,8 +30,6 @@ class BooksTest extends TestCase
 
     /**
      * Test the ability to add a desired book.
-     *
-     * @return void
      */
     public function testCanAddABook()
     {
@@ -49,6 +47,7 @@ class BooksTest extends TestCase
         $response->assertStatus(200);
         $this->assertDatabaseHas('books', [
             'isbn' => $book->isbn,
+            'price' => $book->price,
         ]);
     }
 }
