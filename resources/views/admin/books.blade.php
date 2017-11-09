@@ -30,7 +30,7 @@
 											<td class="text-primary">${{$book->price}}</td>
 		                                	<td>{{$book->status}}</td>
 											<td class="td-actions text-right">
-		                                        <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" data-original-title="Edit Book">
+		                                        <button type="button" rel="tooltip" title="edit" class="btn btn-primary btn-simple btn-xs" data-original-title="Edit Book">
 		                                            <i class="material-icons">edit</i>
 		                                        </button>
 		                                        <button type="button" rel="tooltip" title="" class="btn btn-danger btn-simple btn-xs" data-original-title="Remove">
@@ -56,4 +56,14 @@
 @endsection
 
 @section('js')
+<script>
+	const config = {
+		url: {
+			edit: '{{route('admin.books.update.desired')}}',
+			delete: '{{route('admin.books.delete.desired')}}',
+		},
+	}
+	
+	requirejs(['app/pages/admin/books'], module => module(config))
+</script>
 @endsection
