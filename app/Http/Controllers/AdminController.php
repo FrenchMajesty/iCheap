@@ -66,4 +66,23 @@ class AdminController extends Controller
         ]);
     }
 
+    /**
+     * Handle request to update a desired book
+     * @param  \Illuminate\Http\Request $request Request
+     * @return void           
+     */
+    public function updateDesiredBook(Request $request)
+    {
+        $this->validate($request, [
+            'id' => 'required|numeric|exists:books',
+            'isbn' => 'required|string|min:8|max:15|unique:books',
+            'price' => 'required|numeric|min:5|max:10000',
+        ]);
+
+        $book = Book::find($request->id);
+        $book->isbn = $request->isbn;
+        $book->price = $request->price;
+        $book->save();
+    }
+
 }
