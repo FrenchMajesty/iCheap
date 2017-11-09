@@ -85,16 +85,13 @@ class AdminController extends Controller
 
     /**
      * Handle request to delete a desired book
-     * @param  \Illuminate\Http\Request $request Request
+     * @param int $id The book's ID
      * @return void           
      */
-    public function deleteDesiredBook(Request $request)
+    public function deleteDesiredBook(int $id)
     {
-        $this->validate($request, [
-            'id' => 'required|numeric|exists:books',
-        ]);
-
-        Book::find($request->id)->delete();
+        $book = Book::findOrFail($id);
+        $book->delete();
     }
 
 }

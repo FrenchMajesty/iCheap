@@ -30,10 +30,8 @@ Route::group(['prefix' => '/admin', 'middleware' => 'isAdmin'], function() {
 
 		Route::post('/update', 'AdminController@updateDesiredBook')->name('admin.books.update.desired');
 
-		Route::delete('/', 'AdminController@deleteDesiredBook')->name('admin.books.delete.desired');
+		Route::delete('/{id?}', 'AdminController@deleteDesiredBook')->name('admin.books.delete.desired');
 
 	});
-
-	
 
 });
