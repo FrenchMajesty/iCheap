@@ -7,6 +7,7 @@ requirejs.config({
 		bootstrap: '//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min',
 		facebook: '//connect.facebook.net/en_US/sdk',
 		sweetalert: '//cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.4/sweetalert2.all.min',
+		'datatables.net': '//cdn.datatables.net/1.10.16/js/jquery.dataTables.min',
 	},
 	shim: {
 		'bootstrap': {
@@ -18,7 +19,7 @@ requirejs.config({
 		'dataTables.bootstrap4.min': {
 			deps: ['jquery'],
 		},
-		'jquery.dataTables.min': {
+		'datatables.net': {
 			deps: ['jquery'],
 			exports: 'jQuery.fn.DataTable',
 		},
