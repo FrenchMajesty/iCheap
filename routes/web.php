@@ -20,10 +20,18 @@ Route::group(['prefix' => '/admin', 'middleware' => 'isAdmin'], function() {
 
 	Route::get('/', 'AdminController@index')->name('admin.index');
 
-	Route::get('/books', 'AdminController@booksManager')->name('admin.books');
+	Route::group(['prefix' => '/books'], function() {
 
-	Route::get('/books/add', 'AdminController@addDesiredBook')->name('admin.books.add.desired');
+		Route::get('/', 'AdminController@booksManager')->name('admin.books');
 
-	Route::post('/books/add', 'AdminController@createDesiredBook')->name('admin.books.create.desired');
+		Route::get('/add', 'AdminController@addDesiredBook')->name('admin.books.add.desired');
+
+		Route::post('/add', 'AdminController@createDesiredBook')->name('admin.books.create.desired');
+
+		Route::post('/update', 'AdminController@updateDesiredBook')->name('admin.books.update.desired');
+
+	});
+
+	
 
 });
