@@ -15,4 +15,15 @@
 		</div>
 	</form>
 </script>
+<script data-template="order-book-details" type="text/x-handlebars-template">
+	<div class="card card-profile container">
+		<div class="content"><br/>
+			<img src="@{{image}}" style="width: auto">
+			<h4 class="card-title">@{{title}}</h4>
+			<p class="card-content">
+				@{{{additional}}}
+			</p>
+		</div>
+	</div>
+</script>
 <script data-template="name" type="text/x-handlebars-template"></script>
