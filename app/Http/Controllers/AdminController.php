@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Book;
+use App\Sell\Order;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -39,14 +40,37 @@ class AdminController extends Controller
 
     /**
      * Show the management page for books
-     * @param  \Illuminate\Http\Request $request Request
+     * 
      * @return \Illuminate\Http\Response           
      */
-   	public function booksManager(Request $request)
+   	public function booksManager()
    	{	
    		$books = Book::all();
    		return view('admin.books', compact('books'));
    	}
+
+    /**
+     * Show the management page for orders
+     * 
+     * @return \Illuminate\Http\Response           
+     */
+    public function ordersManager()
+    {
+        $orders = Order::all();
+        $completed = Order::onlyTrashed()->get();
+        return view('admin.orders', compact('orders', 'completed'));
+    }
+
+    /**
+     * Handle request to delete a desired book
+     * @param int $id The book's ID
+     * @return void           
+     */
+    public function deleteDesiredBook(int $id)
+    {
+        $book = Book::findOrFail($id);
+        $book->delete();
+    }
 
     /**
      * Handle request to create a new desired book
@@ -81,17 +105,6 @@ class AdminController extends Controller
         $book = Book::find($request->id);
         $book->price = $request->price;
         $book->save();
-    }
-
-    /**
-     * Handle request to delete a desired book
-     * @param int $id The book's ID
-     * @return void           
-     */
-    public function deleteDesiredBook(int $id)
-    {
-        $book = Book::findOrFail($id);
-        $book->delete();
     }
 
 }

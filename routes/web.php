@@ -34,4 +34,10 @@ Route::group(['prefix' => '/admin', 'middleware' => 'isAdmin'], function() {
 
 	});
 
+	Route::group(['prefix' => '/orders'], function() {
+
+		Route::get('/', 'AdminController@ordersManager')->name('admin.orders');
+
+	});
+
 });
