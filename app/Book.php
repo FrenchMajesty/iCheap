@@ -26,6 +26,6 @@ class Book extends Model
      */
     public function orders()
     {
-        return $this->hasMany('App\Sell\Order');
+        return $this->hasMany('App\Desired\Order');
     }
 }
