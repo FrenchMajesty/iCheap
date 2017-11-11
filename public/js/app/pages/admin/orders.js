@@ -23,7 +23,13 @@ define(['jquery',
 					received: null,
 					completed: null,
 				},
-				orders: null,
+				orders: {
+					status: {
+						received: null,
+						completed: null,
+					},
+					data: null,
+				}
 			},option),
 		}
 			
@@ -44,7 +50,7 @@ define(['jquery',
 		 */
 		function showBookDetails(e) {
 			const row = $(e.target).parents('tr')
-			const order = module.options.orders.reduce(order => order.id == row.data('id'))
+			const order = module.options.orders.data.reduce(order => order.id == row.data('id'))
 
 			GoogleLibrary(order.book.isbn, (book) => {
 				if(book) {
@@ -70,12 +76,34 @@ define(['jquery',
 		}
 
 		/**
+		 * Submit AJAX Request to mark an order as received or completed
+		 * @param  {Event} e Click Event
+		 * @return {Void}   
+		 */
+		function updateOrderStatus(e) {
+			const row = $(e.target).parents('tr')
+			const status = $(e.target).attr('data-action') == 'received'
+							? module.options.orders.status.received
+							: module.options.orders.status.completed
+
+			const formData = new FormData()
+			formData.append('id', row.data('id'))
+			formData.append('status', status)
+
+			FormHandler.submitRequest(module.options.url.edit, formData)
+				.then(_ => swal('Success!','The order status was successfully updated.','success'))
+				.fail(_ => swal('Oops!','An error occured was updating the status of this order.','error'))
+		}
+
+		/**
 		 * Bind events to page DOM
 		 * @return {Void} 
 		 */
 		function bindUIEvents() {
 			$(document).on('click','[data-action="book"]', showBookDetails)
-		}
+			$(document).on('click','[data-action="received"]', updateOrderStatus)
+			$(document).on('click','[data-action="completed"]', updateOrderStatus)
+		}	
 
 		module.init()
 	}

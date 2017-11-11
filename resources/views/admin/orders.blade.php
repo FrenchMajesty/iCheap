@@ -64,10 +64,16 @@
 <script>
 	const config = {
 		url: {
-			edit: '{{route('admin.books.update.desired')}}',
+			edit: '{{route('admin.orders.update')}}',
 			delete: '{{route('admin.books.delete.desired')}}',
 		},
-		orders: {!! $orders !!}
+		orders: {
+			status: {
+				received: 'SHIPMENT_RECEIVED',
+				completed: 'PAYMENT_SENT',
+			},
+			data: {!! $orders !!}
+		},
 	}
 
 	requirejs(['app/pages/admin/orders'], module => module(config))
