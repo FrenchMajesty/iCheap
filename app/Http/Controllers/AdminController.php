@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Book;
-use App\Sell\Order;
+use App\Desired\Order;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -105,6 +105,25 @@ class AdminController extends Controller
         $book = Book::find($request->id);
         $book->price = $request->price;
         $book->save();
+    }
+
+    /**
+     * Handle request to update an order for a desired book
+     * @param  \Illuminate\Http\Request $request Request
+     * @return void           
+     */
+    public function updateOrder(Request $request)
+    {
+        $this->validate($request, [
+            'id' => 'required|numeric|exists:books|reject_soft_deleted:orders',
+            'status' => 'required|string',
+            'tracking' => 'nullable|string|max:50',
+        ]);
+
+        $order = Order::find($request->id);
+        $order->status = $request->status;
+        $order->payment_tracking = $request->tracking;
+        $order->save();
     }
 
 }
