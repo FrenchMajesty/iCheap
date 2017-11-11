@@ -18,7 +18,7 @@ class CreateOrdersTable extends Migration
             $table->integer('user_id');
             $table->integer('book_id');
             $table->string('book_tracking');
-            $table->string('status')->default('AWAITING_SHIPPING');
+            $table->integer('status_id');
             $table->string('payment_tracking')->nullable();
             $table->timestamp('received_at')->nullable();
             $table->timestamp('payed_at')->nullable();
