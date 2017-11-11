@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Book;
 use App\Desired\Order;
+use App\Desired\OrderStatus;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -116,12 +117,13 @@ class AdminController extends Controller
     {
         $this->validate($request, [
             'id' => 'required|numeric|exists:books|reject_soft_deleted:orders',
-            'status' => 'required|string',
+            'status' => 'required|string|exists:desired_books_order_status,code',
             'tracking' => 'nullable|string|max:50',
         ]);
 
+        $status = OrderStatus::where('code', $request->status)->first();
         $order = Order::find($request->id);
-        $order->status = $request->status;
+        $order->status_id = $status->id;
         $order->payment_tracking = $request->tracking;
         $order->save();
     }
