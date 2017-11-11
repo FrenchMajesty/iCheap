@@ -74,7 +74,7 @@ class AdminController extends Controller
     public function updateDesiredBook(Request $request)
     {
         $this->validate($request, [
-            'id' => 'required|numeric|exists:books',
+            'id' => 'required|numeric|exists:books|reject_soft_deleted:books',
             'price' => 'required|numeric|min:5|max:10000',
         ]);
 
