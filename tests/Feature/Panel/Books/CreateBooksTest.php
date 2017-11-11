@@ -5,7 +5,6 @@ namespace Tests\Feature\Panel\Books;
 use App\User;
 use App\Book;
 use Tests\TestCase;
-use Laravel\Dusk\Chrome;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class CreateBooksTest extends TestCase
