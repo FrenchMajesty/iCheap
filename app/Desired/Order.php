@@ -38,4 +38,12 @@ class Order extends Model
     {
     	return $this->belongsTo('App\Book');
     }
+
+    /**
+     * Get the current status of the order
+     */
+    public function status()
+    {
+        return $this->belongsTo('App\Desired\OrderStatus','status_id');
+    }
 }
