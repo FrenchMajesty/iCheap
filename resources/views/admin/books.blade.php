@@ -1,4 +1,4 @@
-@section('pageTitle', 'Books Manager - '.env('APP_NAME'))
+@section('pageTitle', 'Books Manager')
 
 @extends ('layouts.admin')
 
