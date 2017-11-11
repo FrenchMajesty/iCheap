@@ -60,7 +60,7 @@
                         </a>
                     </li>
                     <li {{(\Request::route()->getName() == 'admin.orders') ? 'class=active' : '' }}>
-                        <a href="#">
+                        <a href="{{route('admin.orders')}}">
                             <i class="material-icons">local_shipping</i>
                             <p>Orders</p>
                         </a>
