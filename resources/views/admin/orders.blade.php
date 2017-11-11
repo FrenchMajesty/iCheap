@@ -19,6 +19,7 @@
 	                            	<tr><th>Action</th>
 	                            	<th>Student</th>
 	                            	<th>Book</th>
+	                            	<th>Created</th>
 									<th>Status</th>
 	                            </tr></thead>
 	                            <tbody>
@@ -40,6 +41,7 @@
 		                                            <i class="material-icons">search</i>
 		                                        </button>
 											</td>
+											<td>{{$order->created_at->diffForHumans()}}</td>
 		                                	<td>{{$order->status->name}}</td>
 											
 		                                </tr>
@@ -66,7 +68,7 @@
 		},
 		orders: {!! $orders !!}
 	}
-	
+
 	requirejs(['app/pages/admin/orders'], module => module(config))
 </script>
 @endsection
