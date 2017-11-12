@@ -18,6 +18,7 @@ class CreateDesiredBooksOrderStatusTable extends Migration
             $table->string('code');
             $table->string('name');
             $table->timestamps();
+            $table->unique(['code','name']);
         });
     }
 
