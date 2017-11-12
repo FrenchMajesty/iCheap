@@ -28,7 +28,7 @@
 		                                	<td>Dakota Rice</td>
 		                                	<td data-isbn="{{$book->isbn}}">{{$book->isbn}}</td>
 											<td data-price="{{$book->price}}" class="text-primary">${{$book->price}}</td>
-		                                	<td>{{$book->status}}</td>
+		                                	<td>{{$book->orders->count()}} Ongoing Orders</td>
 											<td class="td-actions text-right">
 		                                        <button type="button" rel="tooltip" data-action="edit" class="btn btn-primary btn-simple btn-xs" data-original-title="Edit Book">
 		                                            <i class="material-icons">edit</i>
