@@ -116,7 +116,7 @@ class AdminController extends Controller
     public function updateOrder(Request $request)
     {
         $this->validate($request, [
-            'id' => 'required|numeric|exists:books|reject_soft_deleted:orders',
+            'id' => 'required|numeric|exists:orders|reject_soft_deleted:orders',
             'status' => 'required|string|exists:desired_books_order_status,code',
             'tracking' => 'nullable|string|max:50',
         ]);
