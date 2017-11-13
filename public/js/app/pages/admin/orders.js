@@ -59,6 +59,7 @@ define(['jquery',
 						`<p>Author${book.authors.length > 1 ? 's' : ''}: ${book.authors.join(', ')}</p>`,
 						`<p>Publisher: ${book.publisher}</p>`,
 						`<p>Price Given: <b>$${order.book.price}</b></p>`,
+						order.payment_amount ? `<p>Price Paid: <b>$${order.payment_amount}</b></p>`: '',
 					].join('')
 					const template = Templator('order-book-details')
 					const html = template({image: book.image, title: book.title, additional: info})
