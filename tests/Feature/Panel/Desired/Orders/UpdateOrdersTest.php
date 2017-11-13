@@ -30,11 +30,13 @@ class UpdateOrdersTest extends TestCase
     /**
      * Test the ability to update an order's status
      */
-    public function testCanUpdateOrderStatus()
+    public function testCanUpdateOrderStatusAsReceived()
     {
     	// Given I have an admin some order and a new order status
         $order = factory(Order::class)->create();
-        $status = factory(OrderStatus::class)->create();
+        $status = factory(OrderStatus::class)->create([
+            'code' => 'SHIPMENT_RECEIVED',
+        ]);
 
     	// When the admin update the order's status
         $response = $this->actingAs($this->admin)
@@ -48,6 +50,42 @@ class UpdateOrdersTest extends TestCase
         $this->assertDatabaseHas('orders', [
             'id' => $order->id,
             'status_id' => $status->id,
+        ]);
+
+        $this->assertDatabaseMissing('orders', [
+            'id' => $order->id,
+            'received_at' => null,
+        ]);
+    }
+
+    /**
+     * Test the ability to update an order's status
+     */
+    public function testCanUpdateOrderStatusAsPaid()
+    {
+        // Given I have an admin some order and a new order status
+        $order = factory(Order::class)->create();
+        $status = factory(OrderStatus::class)->create([
+            'code' => 'PAYMENT_SENT',
+        ]);
+
+        // When the admin update the order's status
+        $response = $this->actingAs($this->admin)
+                        ->post('/admin/orders/update', [
+                            'id' => $order->id,
+                            'status' => $status->code,
+                        ]);
+
+        // Then it should be updated
+        $response->assertSuccessful();
+        $this->assertDatabaseHas('orders', [
+            'id' => $order->id,
+            'status_id' => $status->id,
+        ]);
+
+        $this->assertDatabaseMissing('orders', [
+            'id' => $order->id,
+            'payed_at' => null,
         ]);
     }
 
