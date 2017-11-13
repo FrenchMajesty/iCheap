@@ -68,7 +68,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header" data-background-color="blue">
-                        <h4 class="title">Orders Completed</h4>
+                        <h4 class="title">Orders Fulfilled</h4>
                         <p class="category">Here you see the completed orders for books {{env('APP_NAME')}} bought.</p>
                     </div>
                     <div class="card-content table-responsive">
@@ -78,7 +78,7 @@
 	                            	<tr><th>Student</th>
 	                            	<th>Book</th>
 	                            	<th>Order Created</th>
-	                            	<th>Received</th>
+	                            	<th>Shipment Received</th>
 	                            	<th>Completed</th>
 	                            </tr></thead>
 	                            <tbody>
@@ -102,7 +102,7 @@
 	                            </tbody>
 	                        </table>
 	                    @else
-	                    	<h4 class="text-center">No orders have been fullfilled yet.</h4>
+	                    	<h4 class="text-center">No orders have been fulfilled yet.</h4>
                         @endif
                     </div>
                 </div>
@@ -124,7 +124,7 @@
 				received: 'SHIPMENT_RECEIVED',
 				completed: 'PAYMENT_SENT',
 			},
-			data: {!! $orders !!}
+			data: {!! $orders->merge($completed) !!}
 		},
 	}
 
