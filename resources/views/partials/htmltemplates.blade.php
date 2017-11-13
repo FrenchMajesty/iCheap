@@ -7,7 +7,8 @@
 				<div class="form-group label-floating is-empty">
 					<label class="control-label">Price</label>
 					<input type="number" name="price" class="form-control" value="@{{price}}" step="any" required>
-				<span class="material-input"></span></div>
+					<span class="material-input"></span>
+				</div>
 		    </div>
 		</div>
 		<div class="row">
@@ -25,5 +26,19 @@
 			</p>
 		</div>
 	</div>
+</script>
+<script data-template="order-fulfill" type="text/x-handlebars-template">
+	<form class="row" id="order-fulfill" method="POST" action="{{route('admin.orders.update')}}">
+		{{csrf_field()}}
+		<input type="hidden" name="id" value="@{{id}}">
+		<input type="hidden" name="status" value="@{{status}}">
+		<div class="col-md-12">
+			<div class="form-group label-floating is-empty">
+				<label class="control-label">Amount of the Price Paid</label>
+				<input type="number" name="amount" class="form-control" value="@{{price}}" step="any" required>
+				<span class="material-input"></span>
+			</div>
+		</div>
+	</form>
 </script>
 <script data-template="name" type="text/x-handlebars-template"></script>
