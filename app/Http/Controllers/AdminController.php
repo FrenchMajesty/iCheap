@@ -120,6 +120,7 @@ class AdminController extends Controller
             'id' => 'required|numeric|exists:orders|reject_soft_deleted:orders',
             'status' => 'required|string|exists:desired_books_order_status,code',
             'tracking' => 'nullable|string|max:50',
+            'amount' => 'required_if:status,PAYMENT_SENT|max:10000',
         ]);
 
         $status = OrderStatus::where('code', $request->status)->first();
@@ -130,6 +131,7 @@ class AdminController extends Controller
         if($status->code == 'SHIPMENT_RECEIVED') {
             $order->received_at = Carbon::now();
         }else if($status->code == 'PAYMENT_SENT') {
+            $order->payment_amount = $request->amount;
             $order->delete();
         }
 

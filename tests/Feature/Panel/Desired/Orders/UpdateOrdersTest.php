@@ -68,12 +68,14 @@ class UpdateOrdersTest extends TestCase
         $status = factory(OrderStatus::class)->create([
             'code' => 'PAYMENT_SENT',
         ]);
+        $priceBought = 50.95;
 
         // When the admin update the order's status
         $response = $this->actingAs($this->admin)
                         ->post('/admin/orders/update', [
                             'id' => $order->id,
                             'status' => $status->code,
+                            'amount' => $priceBought,
                         ]);
 
         // Then it should be updated
@@ -81,6 +83,7 @@ class UpdateOrdersTest extends TestCase
         $this->assertDatabaseHas('orders', [
             'id' => $order->id,
             'status_id' => $status->id,
+            'payment_amount' => $priceBought,
         ]);
 
         $this->assertDatabaseMissing('orders', [
