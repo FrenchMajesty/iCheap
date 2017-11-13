@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Book;
 use App\Desired\Order;
 use App\Desired\OrderStatus;
@@ -125,6 +126,13 @@ class AdminController extends Controller
         $order = Order::find($request->id);
         $order->status_id = $status->id;
         $order->payment_tracking = $request->tracking;
+
+        if($status->code == 'SHIPMENT_RECEIVED') {
+            $order->received_at = Carbon::now();
+        }else if($status->code == 'PAYMENT_SENT') {
+            $order->payed_at = Carbon::now();
+        }
+
         $order->save();
     }
 
