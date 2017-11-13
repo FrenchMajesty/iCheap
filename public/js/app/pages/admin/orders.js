@@ -103,13 +103,79 @@ define(['jquery',
 		}
 
 		/**
+		 * Open the modal to complete an order as fulfilled
+		 * @param  {Event} e Click event
+		 * @return {Void}   
+		 */
+		function fulfillOrder(e) {
+			e.stopPropagation()
+
+			if($(e.target).attr('disabled')) {
+				return
+			}
+			
+			const row = $(e.target).parents('tr')
+			const status = $(e.target).attr('data-action') == 'received'
+							? module.options.orders.status.received
+							: module.options.orders.status.completed
+
+			const template = Templator('order-fulfill')
+			const html = template({
+				id: row.data('id'),
+				status: status,
+				price: '',
+			})
+
+			swal({
+				title: 'Complete the Order',
+				html: html,
+				preConfirm: handleFulfillOrderModalSubmit,
+				showLoaderOnConfirm: true,
+				showCancelButton: true,
+				allowOutsideClick: false,
+			}).then(() => {
+				swal('Success!','The order status was successfully updated.','success')
+			}, (dismiss) => {
+				if(dismiss != 'cancel') {
+					swal('Oops!','An error occured was updating the status of this order.','error')
+				}
+			})	
+		}
+
+		/**
+		 * Submit an AJAX Request to update the status of an order
+		 * @return {Promise} Server response
+		 */
+		function handleFulfillOrderModalSubmit() {
+			return new Promise((resolve, reject) => {
+				const form = $('#order-fulfill')
+				const formData = new FormData(form[0])
+
+				FormHandler.submitRequest(form.attr('action'), formData)
+				.then(_ => resolve())
+				.fail(res => {
+					if(res.responseJSON.errors) {
+						const errors = Object.keys(res.responseJSON.errors).map(field => {
+							return res.responseJSON.errors[field][0]
+						})
+
+						reject(errors)
+					} else {
+						reject(['An error occured while fulfilling this order.',
+								'It may already be fulfilled, please refresh the page.'].join(''))
+					}
+				})
+			})
+		}
+
+		/**
 		 * Bind events to page DOM
 		 * @return {Void} 
 		 */
 		function bindUIEvents() {
 			$(document).on('click','[data-action="book"]', showBookDetails)
 			$(document).on('click','[data-action="received"]', updateOrderStatus)
-			$(document).on('click','[data-action="completed"]', updateOrderStatus)
+			$(document).on('click','[data-action="completed"]', fulfillOrder)
 		}	
 
 		module.init()
