@@ -81,6 +81,10 @@ define(['jquery',
 		 * @return {Void}   
 		 */
 		function updateOrderStatus(e) {
+			if($(e.target).attr('disabled')) {
+				return
+			}
+			
 			const row = $(e.target).parents('tr')
 			const status = $(e.target).attr('data-action') == 'received'
 							? module.options.orders.status.received
