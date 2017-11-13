@@ -28,10 +28,10 @@
 		                                <tr data-id="{{$order->id}}">
 		                                	<td class="td-actions text-right">
 		                                        <button type="button" rel="tooltip" data-action="received" class="btn btn-primary btn-simple btn-xs" data-original-title="Mark as Received">
-		                                            <i class="material-icons">assignment_returned</i>
+		                                            <i class="material-icons" data-action="received">assignment_returned</i>
 		                                        </button>
 		                                        <button type="button" rel="tooltip" data-action="completed" class="btn btn-success btn-simple btn-xs" data-original-title="Mark as Completed">
-		                                            <i class="material-icons">check</i>
+		                                            <i class="material-icons" data-action="completed">check</i>
 		                                        <div class="ripple-container"></div></button>
 		                                    </td>
 		                                	<td>
