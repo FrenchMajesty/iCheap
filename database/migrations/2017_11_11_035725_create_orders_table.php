@@ -19,6 +19,7 @@ class CreateOrdersTable extends Migration
             $table->integer('book_id');
             $table->string('book_tracking');
             $table->integer('status_id');
+            $table->double('payment_amount')->nullable();
             $table->string('payment_tracking')->nullable();
             $table->timestamp('received_at')->nullable();
             $table->timestamps();
