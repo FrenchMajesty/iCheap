@@ -14,14 +14,14 @@ class Order extends Model
      * @var array
      */
     protected $fillable = ['user_id','book_id','book_tracking','payment_tracking',
-        'status_id','received_at','payed_at',
+        'status_id','received_at',
     ];
 
     /**
      * The attributes that should be mutated to dates
      * @var array
      */
-    protected $dates = ['received_at','payed_at','created_at','updated_at','deleted_at'];
+    protected $dates = ['received_at','created_at','updated_at','deleted_at'];
 
     /**
      * Get the user associated with this order

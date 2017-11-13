@@ -130,7 +130,7 @@ class AdminController extends Controller
         if($status->code == 'SHIPMENT_RECEIVED') {
             $order->received_at = Carbon::now();
         }else if($status->code == 'PAYMENT_SENT') {
-            $order->payed_at = Carbon::now();
+            $order->delete();
         }
 
         $order->save();

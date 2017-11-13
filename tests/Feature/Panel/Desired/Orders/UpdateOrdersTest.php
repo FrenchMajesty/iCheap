@@ -85,7 +85,7 @@ class UpdateOrdersTest extends TestCase
 
         $this->assertDatabaseMissing('orders', [
             'id' => $order->id,
-            'payed_at' => null,
+            'deleted_at' => null,
         ]);
     }
 

@@ -21,7 +21,6 @@ class CreateOrdersTable extends Migration
             $table->integer('status_id');
             $table->string('payment_tracking')->nullable();
             $table->timestamp('received_at')->nullable();
-            $table->timestamp('payed_at')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
