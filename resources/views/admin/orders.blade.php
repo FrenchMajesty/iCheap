@@ -27,11 +27,19 @@
 	                            		@php($order->book)
 		                                <tr data-id="{{$order->id}}">
 		                                	<td class="td-actions text-right">
-		                                        <button type="button" rel="tooltip" data-action="received" class="btn btn-primary btn-simple btn-xs" data-original-title="Mark as Received">
-		                                            <i class="material-icons" data-action="received">assignment_returned</i>
+		                                        <button type="button" rel="tooltip" data-original-title="Mark as Received"
+		                                        data-action="received" class="btn btn-primary btn-simple btn-xs"
+		                                        {{$order->received_at ? 'disabled=true': ''}}>
+		                                            <i class="material-icons" data-action="received"
+		                                            {{$order->received_at ? 'disabled=true': ''}}
+		                                            >assignment_returned</i>
 		                                        </button>
-		                                        <button type="button" rel="tooltip" data-action="completed" class="btn btn-success btn-simple btn-xs" data-original-title="Mark as Completed">
-		                                            <i class="material-icons" data-action="completed">check</i>
+		                                        <button type="button" rel="tooltip" data-original-title="Mark as Completed"
+		                                        data-action="completed" class="btn btn-success btn-simple btn-xs"
+		                                        {{$order->payed_at || !$order->received_at ? 'disabled=true': ''}}>
+		                                            <i class="material-icons" data-action="completed"
+		                                            {{$order->payed_at || !$order->received_at ? 'disabled=true': ''}}
+		                                            >check</i>
 		                                        <div class="ripple-container"></div></button>
 		                                    </td>
 		                                	<td>
