@@ -64,6 +64,50 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header" data-background-color="blue">
+                        <h4 class="title">Orders Completed</h4>
+                        <p class="category">Here you see the completed orders for books {{env('APP_NAME')}} bought.</p>
+                    </div>
+                    <div class="card-content table-responsive">
+                    	@if(count($completed) > 0)
+	                        <table class="table">
+	                            <thead class="text-primary">
+	                            	<tr><th>Student</th>
+	                            	<th>Book</th>
+	                            	<th>Order Created</th>
+	                            	<th>Received</th>
+	                            	<th>Completed</th>
+	                            </tr></thead>
+	                            <tbody>
+	                            	@foreach($completed as $order)
+	                            		@php($order->book)
+		                                <tr data-id="{{$order->id}}">
+		                                	<td>
+		                                		<a href="#" target="_blank">{{$order->user->name}}</a>
+		                                	</td>
+											<td>
+												<button type="button" rel="tooltip" data-action="book" class="btn btn-warning btn-simple btn-xs" data-original-title="See More">
+		                                            <i class="material-icons">search</i>
+		                                        </button>
+											</td>
+											<td>{{$order->created_at->diffForHumans()}}</td>
+											<td>{{$order->received_at->diffForHumans()}}</td>
+											<td>{{$order->deleted_at->diffForHumans()}}</td>
+											
+		                                </tr>
+	                                @endforeach
+	                            </tbody>
+	                        </table>
+	                    @else
+	                    	<h4 class="text-center">No orders have been fullfilled yet.</h4>
+                        @endif
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 @endsection
