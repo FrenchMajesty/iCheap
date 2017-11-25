@@ -78,15 +78,14 @@ define(['jquery','config'], ($, appConfig) => {
          * @return {Promise}     Ajax response
          */
         module.handleDeleteRequest = (url, id) => {
-            const formData = new FormData()
-                  formData.append('id', id)
-
             module.loadAjaxSettings()
-            return $.ajax(url, {
+
+            return $.ajax(`${url}/${id}`, {
                 type: 'DELETE',
-                data: formData,
-                contentType: false,
-                processData: false,
+                data: {
+                    _method: 'DELETE',
+                    id: id,
+                },
             })      
         }
 
