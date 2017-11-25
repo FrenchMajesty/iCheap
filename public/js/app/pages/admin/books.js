@@ -7,8 +7,12 @@
     | the form and modal for editing and deleting books.
     |
     */
-define(['jquery','app/handler/form','app/handler/template','app/ui-mod/datatable','sweetalert'], 
-	($, handler, Templator, DataTables, swal) => { 
+define(['jquery',
+		'app/handler/form',
+		'app/handler/template',
+		'app/ui-mod/datatable',
+		'sweetalert',
+	], ($, handler, Templator, DataTables, swal) => { 
 	
 	const FormHandler = handler()
 
