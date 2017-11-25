@@ -13,8 +13,14 @@ class Order extends Model
      * The attributes that are mass assignables
      * @var array
      */
-    protected $fillable = ['user_id','book_id','book_tracking','payment_tracking',
-        'payment_amount','status_id','received_at',
+    protected $fillable = [
+        'user_id',
+        'book_id',
+        'book_tracking',
+        'payment_tracking',
+        'payment_amount',
+        'status_id',
+        'received_at',
     ];
 
     /**
