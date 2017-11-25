@@ -13,7 +13,14 @@ class Book extends Model
 	 * The attributes that are mass assignable
 	 * @var array
 	 */
-    protected $fillable = ['isbn','price'];
+    protected $fillable = [
+        'isbn',
+        'price',
+        'title',
+        'image',
+        'authors',
+        'publisher',
+    ];
 
     /**
      * The attributes that should be mutated to dates
