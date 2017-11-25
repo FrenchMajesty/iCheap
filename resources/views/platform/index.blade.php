@@ -1,4 +1,4 @@
-@section('pageTitle', env('APP_NAME').' - Home ')
+@section('pageTitle', 'Home')
 
 @extends ('layouts.platform')
 
@@ -13,8 +13,6 @@
                     <div class="col-md-12">
                         <ol class="carousel-indicators slide-indicators">
                             <li data-target="#slide-list" data-slide-to="0" class="active"></li>
-                            <li data-target="#slide-list" data-slide-to="1"></li>
-                            <li data-target="#slide-list" data-slide-to="2"></li>
                         </ol>                            
                     </div>
                 </div>
@@ -29,12 +27,21 @@
                         <div class="slide-text">
                             <div class="container">
                                 <div class="row">
-                                    <div class="col-md-6 col-md-offset-6">
+                                    <div class="col-md-6 col-md-offset-3">
                                         <div class="slide-content">
-                                            <h2>We are awesome</h2>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur, dolorem, excepturi. Dolore aliquam quibusdam ut quae iure vero exercitationem ratione!</p>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi ab molestiae minus reiciendis! Pariatur ab rerum, sapiente ex nostrum laudantium.</p>
-                                            <a href="" class="readmore">Learn more</a>
+                                            <h2>We buy your textbooks!</h2>
+                                            <p>Enter your textbook's ISBN below and we will tell you how much we want to buy it from you <b>CASH</b>. Free shipping included.</p>
+                                            <form method="POST">
+                                                <div class="row">
+                                                    <label>Book's ISBN</label>
+                                                    <input class="form-control" type="text" name="isbn" maxlength="15" placeholder="Copy your book's ISBN number here" autofocus required>
+                                                </div><br>
+                                                <div class="row">
+                                                    <center>
+                                                        <button class="btn btn-lg btn-primary" type="submit">Sell my Book!</button>
+                                                    </center>
+                                                </div>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -96,7 +103,7 @@
             <div class="col-md-3 col-sm-6">
                 <div class="single-promo">
                     <i class="fa fa-refresh"></i>
-                    <p>30 Days return</p>
+                    <p>15 days response</p>
                 </div>
             </div>
             <div class="col-md-3 col-sm-6">
@@ -114,7 +121,7 @@
             <div class="col-md-3 col-sm-6">
                 <div class="single-promo">
                     <i class="fa fa-gift"></i>
-                    <p>New products</p>
+                    <p>Referral bonus</p>
                 </div>
             </div>
         </div>
@@ -141,4 +148,10 @@
 @endsection
 
 @section('js')
+<script type="text/javascript">
+    const config = {
+        search: '',
+    }
+    requirejs([])
+</script>
 @endsection
