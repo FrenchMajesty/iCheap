@@ -9,7 +9,7 @@
 define(['jquery',
 		'app/handler/form',
 		'app/ui-mod/BS-Notify',
-		'api/google-library'
+		'app/api/google-library',
 		'config',
 ], ($, handler, BSNotify, GoogleLibrary, appConfig) => { 
 	
@@ -30,16 +30,29 @@ define(['jquery',
 	 * @return {Void}   
 	 */
 	function handleCreateBook(e) {
-		FormHandler.handleSubmit(e)
-		.then(_ => {
-			e.target.reset()
-			BSNotify({
-				style: 'success',
-				icon: 'check',
-				message: 'Your book was successfully created!',
+		e.preventDefault()
+
+		const isbn = $(e.target).find('input[name="isbn"]').val()
+		GoogleLibrary(isbn, (response) => {
+			if(!response) return
+
+			const formData = new FormData(e.target)
+			formData.append('image', response.image)
+			formData.append('authors', response.authors)
+			formData.append('title', response.title)
+			formData.append('publisher', response.publisher)
+
+			FormHandler.submitRequest('', formData)
+			.then(_ => {
+				e.target.reset()
+				BSNotify({
+					style: 'success',
+					icon: 'check',
+					message: 'Your book was successfully created!',
+				})
 			})
+			.fail(res => FormHandler.displayErrors(e.target, res.responseJSON.errors))
 		})
-		.fail(res => FormHandler.displayErrors(e.target, res.responseJSON.errors))
 	}
 
 	/**
