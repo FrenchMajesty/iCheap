@@ -6,7 +6,12 @@
     | This module is for the JavaScript on the page to add a desired book.
     |
     */
-define(['jquery','app/handler/form','app/ui-mod/BS-Notify','config'], ($, handler, BSNotify, appConfig) => { 
+define(['jquery',
+		'app/handler/form',
+		'app/ui-mod/BS-Notify',
+		'api/google-library'
+		'config',
+], ($, handler, BSNotify, GoogleLibrary, appConfig) => { 
 	
 	const FormHandler = handler()
 	const module = {}
