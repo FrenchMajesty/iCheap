@@ -39,6 +39,10 @@ class CreateBooksTest extends TestCase
                     ->post('/admin/books/add', [
                         'isbn' => $book->isbn,
                         'price' => $book->price,
+                        'title' => $book->title,
+                        'authors' => $book->authors,
+                        'publisher' => $book->publisher,
+                        'image' => $book->image,
                     ]);
 
         // Then it should be created and exist in the database
@@ -46,6 +50,10 @@ class CreateBooksTest extends TestCase
         $this->assertDatabaseHas('books', [
             'isbn' => $book->isbn,
             'price' => $book->price,
+            'title' => $book->title,
+            'authors' => $book->authors,
+            'publisher' => $book->publisher,
+            'image' => $book->image,
         ]);
     }
 
@@ -64,12 +72,20 @@ class CreateBooksTest extends TestCase
                         ->post('/admin/books/add', [
                             'isbn' => $book->isbn,
                             'price' => $book->price,
+                            'title' => $book->title,
+                            'authors' => $book->authors,
+                            'publisher' => $book->publisher,
+                            'image' => $book->image,
                         ]);
 
         // Then it should fail validation and not be created
         $response->assertStatus(302);
         $this->assertDatabaseMissing('books', [
             'price' => $book->price,
+            'title' => $book->title,
+            'authors' => $book->authors,
+            'publisher' => $book->publisher,
+            'image' => $book->image,
         ]);
     }
 
@@ -78,7 +94,7 @@ class CreateBooksTest extends TestCase
      */
     public function testCannotAddBookWithoutPrice()
     {
-        // Given I have an admin and a book without a isbn
+        // Given I have an admin and a book without a price
         $book = factory(Book::class)->make([
             'price' => '',
         ]);
@@ -88,19 +104,27 @@ class CreateBooksTest extends TestCase
                         ->post('/admin/books/add', [
                             'isbn' => $book->isbn,
                             'price' => $book->price,
+                            'title' => $book->title,
+                            'authors' => $book->authors,
+                            'publisher' => $book->publisher,
+                            'image' => $book->image,
                         ]);
 
         // Then it should fail validation and not be created
         $response->assertStatus(302);
         $this->assertDatabaseMissing('books', [
             'isbn' => $book->isbn,
+            'title' => $book->title,
+            'authors' => $book->authors,
+            'publisher' => $book->publisher,
+            'image' => $book->image,
         ]);
     }
 
      /**
      * Test that a book cannot be created with a duplicate ISBN
      */
-    public function testCannotAddBookWhenBookWithISBNAlreadyExists()
+    public function testCannotAddBookWhenBookWithISBNThatAlreadyExists()
     {
         // Given I have an admin, an old book, and a new one
         $original = factory(Book::class)->create();
@@ -111,6 +135,10 @@ class CreateBooksTest extends TestCase
                         ->post('/admin/books/add', [
                             'isbn' => $original->isbn,
                             'price' => $book->price,
+                            'title' => $book->title,
+                            'authors' => $book->authors,
+                            'publisher' => $book->publisher,
+                            'image' => $book->image,
                         ]);
 
         // Then it should fail validation
@@ -133,6 +161,10 @@ class CreateBooksTest extends TestCase
                         ->post('/admin/books/add', [
                             'isbn' => $book->isbn,
                             'price' => $book->price,
+                            'title' => $book->title,
+                            'authors' => $book->authors,
+                            'publisher' => $book->publisher,
+                            'image' => $book->image,
                         ]);
 
         // Then it should fail validation and not be created
@@ -140,6 +172,10 @@ class CreateBooksTest extends TestCase
         $this->assertDatabaseMissing('books', [
             'isbn' => $book->isbn,
             'price' => $book->price,
+            'title' => $book->title,
+            'authors' => $book->authors,
+            'publisher' => $book->publisher,
+            'image' => $book->image,
         ]);
     }
 
@@ -159,6 +195,10 @@ class CreateBooksTest extends TestCase
                         ->post('/admin/books/add', [
                             'isbn' => $book->isbn,
                             'price' => $book->price,
+                            'title' => $book->title,
+                            'authors' => $book->authors,
+                            'publisher' => $book->publisher,
+                            'image' => $book->image,
                         ]);
 
         // Then it should fail validation and not be created
@@ -166,6 +206,10 @@ class CreateBooksTest extends TestCase
         $this->assertDatabaseMissing('books', [
             'isbn' => $book->isbn,
             'price' => $book->price,
+            'title' => $book->title,
+            'authors' => $book->authors,
+            'publisher' => $book->publisher,
+            'image' => $book->image,
         ]);
     }
 
@@ -185,6 +229,10 @@ class CreateBooksTest extends TestCase
                         ->post('/admin/books/add', [
                             'isbn' => $book->isbn,
                             'price' => $book->price,
+                            'title' => $book->title,
+                            'authors' => $book->authors,
+                            'publisher' => $book->publisher,
+                            'image' => $book->image,
                         ]);
 
         // Then it should fail validation and not be created
@@ -192,6 +240,10 @@ class CreateBooksTest extends TestCase
         $this->assertDatabaseMissing('books', [
             'isbn' => $book->isbn,
             'price' => $book->price,
+            'title' => $book->title,
+            'authors' => $book->authors,
+            'publisher' => $book->publisher,
+            'image' => $book->image,
         ]);
     }
 
@@ -211,6 +263,10 @@ class CreateBooksTest extends TestCase
                         ->post('/admin/books/add', [
                             'isbn' => $book->isbn,
                             'price' => $book->price,
+                            'title' => $book->title,
+                            'authors' => $book->authors,
+                            'publisher' => $book->publisher,
+                            'image' => $book->image,
                         ]);
 
         // Then it should fail validation and not be created
@@ -218,6 +274,10 @@ class CreateBooksTest extends TestCase
         $this->assertDatabaseMissing('books', [
             'isbn' => $book->isbn,
             'price' => $book->price,
+            'title' => $book->title,
+            'authors' => $book->authors,
+            'publisher' => $book->publisher,
+            'image' => $book->image,
         ]);
     }
 
@@ -236,6 +296,10 @@ class CreateBooksTest extends TestCase
                         ->post('/admin/books/add', [
                             'isbn' => $book->isbn,
                             'price' => $book->price,
+                            'title' => $book->title,
+                            'authors' => $book->authors,
+                            'publisher' => $book->publisher,
+                            'image' => $book->image,
                         ]);
 
         // Then it should fail validation and not be created
@@ -243,6 +307,10 @@ class CreateBooksTest extends TestCase
         $this->assertDatabaseMissing('books', [
             'isbn' => $book->isbn,
             'price' => $book->price,
+            'title' => $book->title,
+            'authors' => $book->authors,
+            'publisher' => $book->publisher,
+            'image' => $book->image,
         ]);
     }
 }
