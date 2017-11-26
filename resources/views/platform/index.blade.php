@@ -31,11 +31,18 @@
                                         <div class="slide-content">
                                             <h2>We buy your textbooks!</h2>
                                             <p>Enter your textbook's ISBN below and we will tell you how much we want to buy it from you <b>CASH</b>. Free shipping included.</p>
-                                            <form method="POST">
+                                            <form method="POST" action="{{route('search')}}">
+                                                {{ csrf_field() }}
                                                 <div class="row">
                                                     <label>Book's ISBN</label>
-                                                    <input class="form-control" type="text" name="isbn" maxlength="15" placeholder="Copy your book's ISBN number here" autofocus required>
-                                                </div><br>
+                                                    <input class="form-control" type="text" name="isbn" maxlength="15" placeholder="Copy your book's ISBN number here" value="{{old('isbn')}}" autofocus required>
+                                                    <br>
+                                                </div>
+                                                @if ($errors->has('isbn'))
+                                                    <span class="alert alert-danger help-block">
+                                                        <strong>{{ $errors->first('isbn') }}</strong>
+                                                    </span>
+                                                @endif
                                                 <div class="row">
                                                     <center>
                                                         <button class="btn btn-lg btn-primary" type="submit">Sell my Book!</button>
