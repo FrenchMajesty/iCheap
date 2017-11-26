@@ -12,6 +12,7 @@ $factory->define(App\Book::class, function(Faker $faker) {
 		'title' => $faker->sentence,
 		'authors' => $faker->name,
 		'publisher' => $faker->sentence,
+		'description' => $faker->paragraph,
 		'image' => $faker->imageUrl(),
 	];
 });

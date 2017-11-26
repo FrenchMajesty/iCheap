@@ -41,6 +41,7 @@ define(['jquery',
 			formData.append('authors', response.authors)
 			formData.append('title', response.title)
 			formData.append('publisher', response.publisher)
+			formData.append('description', response.description)
 
 			FormHandler.submitRequest('', formData)
 			.then(_ => {

@@ -88,6 +88,7 @@ class AdminController extends Controller
             'image' => 'required|url',
             'authors' => 'required|string|max:140',
             'publisher' => 'required|string|max:140',
+            'description' => 'required|string|max:1000',
         ]);
 
         return Book::create([
@@ -97,6 +98,7 @@ class AdminController extends Controller
             'image' => $request->image,
             'authors' => $request->authors,
             'publisher' => $request->publisher,
+            'description' => $request->description,
         ]);
     }
 

@@ -43,6 +43,7 @@ class CreateBooksTest extends TestCase
                         'authors' => $book->authors,
                         'publisher' => $book->publisher,
                         'image' => $book->image,
+                        'description' => $book->description,
                     ]);
 
         // Then it should be created and exist in the database
@@ -54,6 +55,7 @@ class CreateBooksTest extends TestCase
             'authors' => $book->authors,
             'publisher' => $book->publisher,
             'image' => $book->image,
+            'description' => $book->description,
         ]);
     }
 
@@ -76,6 +78,7 @@ class CreateBooksTest extends TestCase
                             'authors' => $book->authors,
                             'publisher' => $book->publisher,
                             'image' => $book->image,
+                            'description' => $book->description,
                         ]);
 
         // Then it should fail validation and not be created
@@ -86,6 +89,7 @@ class CreateBooksTest extends TestCase
             'authors' => $book->authors,
             'publisher' => $book->publisher,
             'image' => $book->image,
+            'description' => $book->description,
         ]);
     }
 
@@ -108,6 +112,7 @@ class CreateBooksTest extends TestCase
                             'authors' => $book->authors,
                             'publisher' => $book->publisher,
                             'image' => $book->image,
+                            'description' => $book->description,
                         ]);
 
         // Then it should fail validation and not be created
@@ -118,6 +123,7 @@ class CreateBooksTest extends TestCase
             'authors' => $book->authors,
             'publisher' => $book->publisher,
             'image' => $book->image,
+            'description' => $book->description,
         ]);
     }
 
@@ -139,6 +145,7 @@ class CreateBooksTest extends TestCase
                             'authors' => $book->authors,
                             'publisher' => $book->publisher,
                             'image' => $book->image,
+                            'description' => $book->description,
                         ]);
 
         // Then it should fail validation
@@ -165,6 +172,7 @@ class CreateBooksTest extends TestCase
                             'authors' => $book->authors,
                             'publisher' => $book->publisher,
                             'image' => $book->image,
+                            'description' => $book->description,
                         ]);
 
         // Then it should fail validation and not be created
@@ -176,6 +184,7 @@ class CreateBooksTest extends TestCase
             'authors' => $book->authors,
             'publisher' => $book->publisher,
             'image' => $book->image,
+            'description' => $book->description,
         ]);
     }
 
@@ -199,6 +208,7 @@ class CreateBooksTest extends TestCase
                             'authors' => $book->authors,
                             'publisher' => $book->publisher,
                             'image' => $book->image,
+                            'description' => $book->description,
                         ]);
 
         // Then it should fail validation and not be created
@@ -210,6 +220,7 @@ class CreateBooksTest extends TestCase
             'authors' => $book->authors,
             'publisher' => $book->publisher,
             'image' => $book->image,
+            'description' => $book->description,
         ]);
     }
 
@@ -233,6 +244,7 @@ class CreateBooksTest extends TestCase
                             'authors' => $book->authors,
                             'publisher' => $book->publisher,
                             'image' => $book->image,
+                            'description' => $book->description,
                         ]);
 
         // Then it should fail validation and not be created
@@ -244,6 +256,7 @@ class CreateBooksTest extends TestCase
             'authors' => $book->authors,
             'publisher' => $book->publisher,
             'image' => $book->image,
+            'description' => $book->description,
         ]);
     }
 
@@ -267,6 +280,7 @@ class CreateBooksTest extends TestCase
                             'authors' => $book->authors,
                             'publisher' => $book->publisher,
                             'image' => $book->image,
+                            'description' => $book->description,
                         ]);
 
         // Then it should fail validation and not be created
@@ -278,6 +292,7 @@ class CreateBooksTest extends TestCase
             'authors' => $book->authors,
             'publisher' => $book->publisher,
             'image' => $book->image,
+            'description' => $book->description,
         ]);
     }
 
@@ -300,6 +315,7 @@ class CreateBooksTest extends TestCase
                             'authors' => $book->authors,
                             'publisher' => $book->publisher,
                             'image' => $book->image,
+                            'description' => $book->description,
                         ]);
 
         // Then it should fail validation and not be created
@@ -311,6 +327,7 @@ class CreateBooksTest extends TestCase
             'authors' => $book->authors,
             'publisher' => $book->publisher,
             'image' => $book->image,
+            'description' => $book->description,
         ]);
     }
 }

@@ -20,6 +20,7 @@ class Book extends Model
         'image',
         'authors',
         'publisher',
+        'description',
     ];
 
     /**
