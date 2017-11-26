@@ -155,10 +155,4 @@
 @endsection
 
 @section('js')
-<script type="text/javascript">
-    const config = {
-        search: '',
-    }
-    requirejs([])
-</script>
 @endsection
