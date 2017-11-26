@@ -15,6 +15,8 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('index');
 
+Route::post('/search/sell', 'BookController@searchForBookToSell')->name('search');
+
 // ### ADMIN PANEL ### //
 Route::group(['prefix' => '/admin', 'middleware' => 'isAdmin'], function() {
 
