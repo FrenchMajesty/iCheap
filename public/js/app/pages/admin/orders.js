@@ -102,9 +102,7 @@ define(['jquery',
 		function fulfillOrder(e) {
 			e.stopPropagation()
 
-			if($(e.target).attr('disabled')) {
-				return
-			}
+			if($(e.target).attr('disabled')) return
 			
 			const row = $(e.target).parents('tr')
 			const status = $(e.target).attr('data-action') == 'received'
