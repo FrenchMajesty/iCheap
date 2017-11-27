@@ -99,11 +99,16 @@
                 </div> 
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="index.html">Home</a></li>
+                        @php($route = \Request::route()->getName())
+                        <li {{ $route == 'index' ? 'class=active' : '' }}>
+                            <a href="{{route('index')}}">Home</a>
+                        </li>
                         <li><a href="#">About Us</a></li>
                         <li><a href="#">Contact Us</a></li>
                         @if(!\Auth::user())
-                            <li><a href="{{route('login')}}">Sign Up/Login</a></li>
+                            <li {{ ($route == 'login' || $route == 'register')  ? 'class=active' : '' }}>
+                                <a href="{{route('login')}}">Sign Up/Login</a>
+                            </li>
                         @elseif(Auth::user()->account == 'admin')
                             <li><a href="{{route('admin.index')}}">Admin Panel</a></li>
                         @else
