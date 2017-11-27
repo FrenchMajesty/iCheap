@@ -21,7 +21,7 @@ class CreateBooksTable extends Migration
             $table->string('image');
             $table->string('authors');
             $table->string('publisher');
-            $table->string('description');
+            $table->text('description');
             $table->timestamps();
             $table->softDeletes();
         });
