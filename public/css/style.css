@@ -29,7 +29,13 @@ h6 {
 }
 body { font-family: 'Titillium Web', sans-serif; }
 
+.full-width {
+  width: 100% !important;
+}
 
+.red-text {
+  color: #d62d2d;
+}
 
 .header-area {
     background: none repeat scroll 0 0 #f4f4f4;
