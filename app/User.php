@@ -16,7 +16,15 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'account', 'profile', 'rank', 'remember_token'
+        'firstname',
+        'lastname',
+        'email',
+        'email_verified',
+        'password',
+        'account',
+        'profile',
+        'rank',
+        'remember_token',
     ];
 
     /**
@@ -24,7 +32,7 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $hidden = ['password', 'remember_token',];
+    protected $hidden = ['password', 'remember_token'];
 
      /**
      * The attributes that should be mutated to dates.
@@ -32,6 +40,14 @@ class User extends Authenticatable
      * @var array
      */
     protected $dates = ['created_at','updated_at','deleted_at'];
+
+    /**
+     * The attributes that should be casted to native types.
+     * @var array
+     */
+    protected $casts = [
+        'email_verified' => 'boolean',
+    ];
 
     /**
      * Get the orders associated with this user
