@@ -111,8 +111,10 @@
                             </li>
                         @elseif(Auth::user()->account == 'admin')
                             <li><a href="{{route('admin.index')}}">Admin Panel</a></li>
+                            <li><a href="{{route('logout')}}">Logout</a></li>
                         @else
                             <li><a href="#">My account</a></li>
+                            <li><a href="{{route('logout')}}">Logout</a></li>
                         @endif
                     </ul>
                 </div>  
