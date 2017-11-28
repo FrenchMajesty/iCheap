@@ -994,8 +994,6 @@ div.cart-collaterals ul.products li.product:hover .add_to_cart_button{background
     margin-bottom: 15px;
 }
 
-
-
 .single-shop-product h2 {
     font-size: 20px;
     margin: 10px 0;
@@ -1003,6 +1001,12 @@ div.cart-collaterals ul.products li.product:hover .add_to_cart_button{background
 .product-option-shop {
     margin-top: 15px;
 }
+
+.disabled, .disabled:hover { 
+  cursor: not-allowed;
+  background-color: #bbbbbb !important;
+}
+
 
 .single-shop-product {margin-bottom: 50px}
 
