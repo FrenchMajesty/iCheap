@@ -28,6 +28,7 @@ class AppServiceProvider extends ServiceProvider
             return (boolean) $entry;
         });
 
+        \Shippo::setApiKey(env('SHIPPO_API_KEY'));
     }
 
     /**
