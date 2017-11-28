@@ -1007,6 +1007,10 @@ div.cart-collaterals ul.products li.product:hover .add_to_cart_button{background
   background-color: #bbbbbb !important;
 }
 
+.btn-arial {
+  background-color: #00c59e;
+  color: #fff;
+}
 
 .single-shop-product {margin-bottom: 50px}
 
