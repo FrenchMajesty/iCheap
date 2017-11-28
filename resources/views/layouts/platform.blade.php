@@ -156,7 +156,9 @@
     <!-- Main Script -->
     <script type="text/javascript">
         window.onload = () => {
-            requirejs(['jquery','bootstrap','owl.carousel.min','jquery.sticky','jquery.easing.1.3.min'])
+            setTimeout(() => {
+                requirejs(['jquery','bootstrap','owl.carousel.min','jquery.sticky','jquery.easing.1.3.min'])
+            }, 100)
         }
     </script>
     @yield('js')
