@@ -31,7 +31,7 @@
                             <div class="product-inner">
                                 <h2 class="product-name">{{$book->title}}</h2>
                                 <div class="product-inner-price">
-                                    <ins>${{$book->price}}</ins> <!--del>$800.00</del-->
+                                    <ins style="font-size: 3em">${{$book->price}}</ins> <!--del>$800.00</del-->
                                 </div>    
                                 
                                 <form action="" class="cart">
