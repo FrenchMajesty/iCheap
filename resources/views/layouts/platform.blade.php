@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="{{asset('css/owl.carousel.css')}}">
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
     <link rel="stylesheet" href="{{asset('css/responsive.css')}}">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -149,17 +150,15 @@
         </div>
     </div> <!-- End footer bottom area -->
     
+    @include('partials.htmltemplates')
     @include('partials.jsconfig')
     
-    <!-- jQuery sticky menu -->
-    <script src="{{asset('js/lib/wowl.carousel.min.js')}}"></script>
-    <script src="{{asset('js/lib/jquery.sticky.js')}}"></script>
-    
-    <!-- jQuery easing -->
-    <script src="{{asset('js/lib/jquery.easing.1.3.min.js')}}"></script>
-    
     <!-- Main Script -->
-    <script src="js/main.js"></script>
+    <script type="text/javascript">
+        window.onload = () => {
+            requirejs(['jquery','bootstrap','owl.carousel.min','jquery.sticky','jquery.easing.1.3.min'])
+        }
+    </script>
     @yield('js')
   </body>
 </html>
