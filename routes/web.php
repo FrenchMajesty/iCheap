@@ -21,6 +21,10 @@ Route::group(['middleware' => 'auth'], function() {
 
 	Route::get('/home', 'UserController@accountPage')->name('account');
 
+	Route::post('/account', 'UserController@updateAccountDetails')->name('account.update');
+
+	Route::post('/pwd', 'UserController@updatePassword')->name('password.update');
+
 	Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 
 });
