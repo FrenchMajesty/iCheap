@@ -57,4 +57,12 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Desired\Order');
     }
+
+    /**
+     * Get the completed orders associated with this user
+     */
+    public function ordersDone()
+    {
+        return $this->hasMany('App\Desired\Order')->onlyTrashed();
+    }
 }
