@@ -40,7 +40,7 @@
 
                                         <p class="form-row form-row-last validate-required">
                                             <label>Email</label>
-                                            <input type="email" value="{{old('new-email')}}" placeholder="Enter your last name" name="new-email" class="input-text full-width" required>
+                                            <input type="email" value="{{old('new-email')}}" placeholder="Enter your email" name="new-email" class="input-text full-width" required>
                                         </p>
                                         @if ($errors->has('new-email'))
                                         <span class="help-block red-text">
