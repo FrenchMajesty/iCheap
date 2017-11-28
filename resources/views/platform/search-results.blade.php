@@ -7,7 +7,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4">
-                <a class="btn btn-primary" href="{{route('index')}}">Return to index</a>
+                <a class="btn btn-arial" href="{{route('index')}}">Return to index</a>
             </div>
             <div class="col-md-8 col-md-offset-2">
                 <div class="product-content-right">
@@ -35,7 +35,7 @@
                                 </div>    
                                 
                                 <form action="" class="cart">
-                                    <button class="btn btn-primary btn-lg" type="submit">Sell my Book</button>
+                                    <a href="{{route('book.sell',[$book->id])}}" class="btn btn-danger btn-lg">Sell my Book</a>
                                 </form>   
                                 <div class="product-inner-category">
                                     <p>Author(s): {{$book->authors}}</p>
