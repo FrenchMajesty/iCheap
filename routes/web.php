@@ -17,6 +17,14 @@ Route::get('/', 'HomeController@index')->name('index');
 
 Route::post('/search/sell', 'BookController@searchForBookToSell')->name('search');
 
+Route::group(['middleware' => 'auth'], function() {
+
+	Route::get('/home', 'UserController@accountPage')->name('account');
+
+	Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
+
+});
+
 // ### ADMIN PANEL ### //
 Route::group(['prefix' => '/admin', 'middleware' => 'isAdmin'], function() {
 
