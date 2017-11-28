@@ -1,6 +1,6 @@
 
 requirejs.config({
-	baseUrl: '/iCheap/public/js/lib',
+	baseUrl: '/iCheap/public/js/lib/',
 	paths: {
 		app: '../app',
 		jquery: '//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min',
@@ -22,6 +22,16 @@ requirejs.config({
 		'datatables.net': {
 			deps: ['jquery'],
 			exports: 'jQuery.fn.DataTable',
+		},
+		'owl.carousel.min': {
+			deps: ['jquery'],
+			exports: 'jQuery.fn.owlCarousel',
+		},
+		'jquery.sticky': {
+			deps: ['jquery'],
+		},
+		'jquery.easing.1.3.min': {
+			deps: ['jquery'],
 		},
 	}
 })
