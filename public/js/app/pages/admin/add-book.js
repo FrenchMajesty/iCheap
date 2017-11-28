@@ -66,30 +66,31 @@ define(['jquery',
 
 		const bookDetailsContainer = $('#book')
 
-		$.ajax(`https://www.googleapis.com/books/v1/volumes?q=isbn:${e.target.value}&${appConfig.google.key}`)
-		.then(res => {
-			if(res.totalItems > 0) {
-				const book = res.items[0].volumeInfo
-				const info = [
-					`<p>Publisher: ${book.publisher} on ${book.publishedDate}</p>`,
+		GoogleLibrary(e.target.value, (book) => {
+
+			if(book) {
+			const info = [
+					`<p>Publisher:${book.publisher}</p>`,
 					`<p>Author${book.authors.length > 1 ? 's' : ''}: ${book.authors.join(', ')}</p>`,
 				].join('')
 
-				bookDetailsContainer.find('h4').text(`${book.title} ${book.subtitle}`)
+				bookDetailsContainer.find('h4').text(book.title)
 				bookDetailsContainer.find('p').html(info)
 
 				if(bookDetailsContainer.find('img')[0]) {
-					bookDetailsContainer.find('img').attr('src', book.imageLinks.thumbnail)
+					bookDetailsContainer.find('img').attr('src', book.image)
 				}else {
 					bookDetailsContainer.find('h4')
-						.before(`<img src="${book.imageLinks.thumbnail}" style="width: auto">`)
+						.before(`<img src="${book.image}" style="width: auto">`)
 				}
-			}else {
-				bookDetailsContainer.find('h4').text('Book details could not be found')
-				bookDetailsContainer.find('img').remove()
-				bookDetailsContainer.find('p').text('')
+
+				return
 			}
-		}) 
+
+			bookDetailsContainer.find('h4').text('Book details could not be found')
+			bookDetailsContainer.find('img').remove()
+			bookDetailsContainer.find('p').text('')
+		})
 	} 
 
 	/**
