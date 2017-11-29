@@ -27,6 +27,12 @@ Route::group(['middleware' => 'auth'], function() {
 
 	Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 
+	Route::group(['prefix' => '/book'], function() {
+
+		Route::get('/sell/{id}', 'BookController@bookPage')->name('book.sell');
+
+	});
+
 });
 
 // ### ADMIN PANEL ### //

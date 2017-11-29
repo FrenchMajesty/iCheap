@@ -22,4 +22,15 @@ class BookController extends Controller
 
     	return view('platform.search-results', compact('book'));
     }
+
+    /**
+     * Show the page of a book
+     * @param  int $id ID of the book to sell
+     * @return \Illuminate\Http\Response     
+     */
+    public function bookPage($id)
+    {
+        $book = Book::findOrFail($id);
+        return view('platform.sell-book', compact('book'));
+    }    
 }
