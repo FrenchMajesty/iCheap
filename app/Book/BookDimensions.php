@@ -20,4 +20,12 @@ class BookDimensions extends Model
      * @var array
      */
     protected $dates = ['created_at','updated_at','deleted_at'];
+
+    /**
+     * Get the book associated with this dimensions model
+     */
+    public function book()
+    {
+        return $this->belongsTo('App\Book');
+    }
 }
