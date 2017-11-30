@@ -15,7 +15,7 @@ class CreateBookDimensionsTable extends Migration
     {
         Schema::create('book_dimensions', function (Blueprint $table) {
             $table->increments('id');
-            $table->int('book_id')->unique();
+            $table->integer('book_id')->unique();
             $table->double('weight');
             $table->double('height');
             $table->double('width');
