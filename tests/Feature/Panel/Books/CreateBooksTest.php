@@ -4,6 +4,7 @@ namespace Tests\Feature\Panel\Books;
 
 use App\User;
 use App\Book;
+use App\Book\BookDimensions;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
@@ -31,8 +32,9 @@ class CreateBooksTest extends TestCase
      */
     public function testCanAddABook()
     {
-        // Given I have an admin and a book to add
+        // Given I have an admin and a book to add with its dimensions
         $book = factory(Book::class)->make();
+        $dimensions = factory(BookDimensions::class)->make();
 
         // When a desired book is added
         $response = $this->actingAs($this->admin)
@@ -44,6 +46,9 @@ class CreateBooksTest extends TestCase
                         'publisher' => $book->publisher,
                         'image' => $book->image,
                         'description' => $book->description,
+                        'height' => $dimensions->height,
+                        'width' => $dimensions->width,
+                        'thickness' => $dimensions->thickness,
                     ]);
 
         // Then it should be created and exist in the database
@@ -64,10 +69,11 @@ class CreateBooksTest extends TestCase
      */
     public function testCannotAddBookWithoutISBN()
     {
-        // Given I have an admin and a book without an ISBN
+        // Given I have an admin and a book without an ISBN and the book's dimensions
         $book = factory(Book::class)->make([
             'isbn' => '',
         ]);
+        $dimensions = factory(BookDimensions::class)->make();
 
         // When a desired book is added
         $response = $this->actingAs($this->admin)
@@ -79,6 +85,9 @@ class CreateBooksTest extends TestCase
                             'publisher' => $book->publisher,
                             'image' => $book->image,
                             'description' => $book->description,
+                            'height' => $dimensions->height,
+                            'width' => $dimensions->width,
+                            'thickness' => $dimensions->thickness,
                         ]);
 
         // Then it should fail validation and not be created
@@ -98,10 +107,11 @@ class CreateBooksTest extends TestCase
      */
     public function testCannotAddBookWithoutPrice()
     {
-        // Given I have an admin and a book without a price
+        // Given I have an admin and a book without a price and the book's dimensions
         $book = factory(Book::class)->make([
             'price' => '',
         ]);
+        $dimensions = factory(BookDimensions::class)->make();
 
         // When a desired book is added
         $response = $this->actingAs($this->admin)
@@ -113,6 +123,9 @@ class CreateBooksTest extends TestCase
                             'publisher' => $book->publisher,
                             'image' => $book->image,
                             'description' => $book->description,
+                            'height' => $dimensions->height,
+                            'width' => $dimensions->width,
+                            'thickness' => $dimensions->thickness,
                         ]);
 
         // Then it should fail validation and not be created
@@ -132,9 +145,10 @@ class CreateBooksTest extends TestCase
      */
     public function testCannotAddBookWhenBookWithISBNThatAlreadyExists()
     {
-        // Given I have an admin, an old book, and a new one
+        // Given I have an admin, an old book, and a new book with its dimensions 
         $original = factory(Book::class)->create();
         $book = factory(Book::class)->make();
+        $dimensions = factory(BookDimensions::class)->make();
 
         // When a desired book is added with the same ISBN as another book
         $response = $this->actingAs($this->admin)
@@ -146,6 +160,9 @@ class CreateBooksTest extends TestCase
                             'publisher' => $book->publisher,
                             'image' => $book->image,
                             'description' => $book->description,
+                            'height' => $dimensions->height,
+                            'width' => $dimensions->width,
+                            'thickness' => $dimensions->thickness,
                         ]);
 
         // Then it should fail validation
@@ -157,11 +174,12 @@ class CreateBooksTest extends TestCase
      */
     public function testCannotAddBookWhenISBNTooShort()
     {
-        // Given I have an admin and a book without a ISBN less than
-        // 8 char long.
+        // Given I have an admin, a book with a ISBN less than
+        // 8 char long. and the book's dimensions
         $book = factory(Book::class)->make([
             'isbn' => str_repeat('a', 7),
         ]);
+        $dimensions = factory(BookDimensions::class)->make();
 
         // When a desired book is added
         $response = $this->actingAs($this->admin)
@@ -173,6 +191,9 @@ class CreateBooksTest extends TestCase
                             'publisher' => $book->publisher,
                             'image' => $book->image,
                             'description' => $book->description,
+                            'height' => $dimensions->height,
+                            'width' => $dimensions->width,
+                            'thickness' => $dimensions->thickness,
                         ]);
 
         // Then it should fail validation and not be created
@@ -193,11 +214,12 @@ class CreateBooksTest extends TestCase
      */
     public function testCannotAddBookWhenISBNTooLong()
     {
-        // Given I have an admin and a book with an ISBN more than
-        // 15 char long.
+        // Given I have an admin, a book with an ISBN more than
+        // 15 char long. and the book's dimensions
         $book = factory(Book::class)->make([
             'isbn' => str_repeat('a', 16),
         ]);
+        $dimensions = factory(BookDimensions::class)->make();
 
         // When a desired book is added
         $response = $this->actingAs($this->admin)
@@ -209,6 +231,9 @@ class CreateBooksTest extends TestCase
                             'publisher' => $book->publisher,
                             'image' => $book->image,
                             'description' => $book->description,
+                            'height' => $dimensions->height,
+                            'width' => $dimensions->width,
+                            'thickness' => $dimensions->thickness,
                         ]);
 
         // Then it should fail validation and not be created
@@ -229,11 +254,12 @@ class CreateBooksTest extends TestCase
      */
     public function testCannotAddBookWhenPriceTooSmall()
     {
-        // Given I have an admin and a book with a price less than
-        // 5.
+        // Given I have an admin, a book with a price less than
+        // 5. and its dimensions
         $book = factory(Book::class)->make([
             'price' => 4.99,
         ]);
+        $dimensions = factory(BookDimensions::class)->make();
 
         // When a desired book is added
         $response = $this->actingAs($this->admin)
@@ -245,6 +271,9 @@ class CreateBooksTest extends TestCase
                             'publisher' => $book->publisher,
                             'image' => $book->image,
                             'description' => $book->description,
+                            'height' => $dimensions->height,
+                            'width' => $dimensions->width,
+                            'thickness' => $dimensions->thickness,
                         ]);
 
         // Then it should fail validation and not be created
@@ -265,11 +294,12 @@ class CreateBooksTest extends TestCase
      */
     public function testCannotAddBookWhenPriceTooBig()
     {
-        // Given I have an admin and a book with a price over 
-        // 10,000.
+        // Given I have an admin, a book with a price over 
+        // 10,000 and the book's dimensions
         $book = factory(Book::class)->make([
             'price' => 10001,
         ]);
+        $dimensions = factory(BookDimensions::class)->make();
 
         // When a desired book is added
         $response = $this->actingAs($this->admin)
@@ -281,6 +311,9 @@ class CreateBooksTest extends TestCase
                             'publisher' => $book->publisher,
                             'image' => $book->image,
                             'description' => $book->description,
+                            'height' => $dimensions->height,
+                            'width' => $dimensions->width,
+                            'thickness' => $dimensions->thickness,
                         ]);
 
         // Then it should fail validation and not be created
@@ -301,10 +334,11 @@ class CreateBooksTest extends TestCase
      */
     public function testCannotAddBookWhenPriceNotANumber()
     {
-        // Given I have an admin and a book with an invalid price
+        // Given I have an admin, a book with an invalid price and the book's dimensions
         $book = factory(Book::class)->make([
             'price' => 'not a number',
         ]);
+        $dimensions = factory(BookDimensions::class)->make();
 
         // When a desired book is added
         $response = $this->actingAs($this->admin)
@@ -316,6 +350,9 @@ class CreateBooksTest extends TestCase
                             'publisher' => $book->publisher,
                             'image' => $book->image,
                             'description' => $book->description,
+                            'height' => $dimensions->height,
+                            'width' => $dimensions->width,
+                            'thickness' => $dimensions->thickness,
                         ]);
 
         // Then it should fail validation and not be created
