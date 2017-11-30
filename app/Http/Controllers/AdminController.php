@@ -89,6 +89,9 @@ class AdminController extends Controller
             'authors' => 'required|string|max:140',
             'publisher' => 'required|string|max:140',
             'description' => 'required|string|max:1000',
+            'height' => 'required|numeric',
+            'width' => 'required|numeric',
+            'thickness' => 'required|numeric',
         ]);
 
         return Book::create([
@@ -99,6 +102,11 @@ class AdminController extends Controller
             'authors' => $request->authors,
             'publisher' => $request->publisher,
             'description' => $request->description,
+            'dimensions' => [
+                'height' => $request->height,
+                'width' => $request->width,
+                'thickness' => $request->thickness,
+            ],
         ]);
     }
 

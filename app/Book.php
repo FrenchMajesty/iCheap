@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Book\BookDimensions;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -35,5 +36,17 @@ class Book extends Model
     public function orders()
     {
         return $this->hasMany('App\Desired\Order');
+    }
+
+    /**
+     * Set the book dimensions and create an entry
+     * @param array $value Book's dimensions
+     */
+    public function setDimensionsAttribute(array $value)
+    {
+        if($this->id) {
+            $params = collect($value)->put('book_id' => $this->id);
+            BookDimensions::create($params->toArray());
+        }
     }
 }

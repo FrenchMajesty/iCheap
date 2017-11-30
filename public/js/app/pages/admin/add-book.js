@@ -42,6 +42,9 @@ define(['jquery',
 			formData.append('title', response.title)
 			formData.append('publisher', response.publisher)
 			formData.append('description', response.description)
+			formData.append('height', response.dimensions.height)
+			formData.append('width', response.dimensions.width)
+			formData.append('thickness', response.dimensions.thickness)
 
 			FormHandler.submitRequest('', formData)
 			.then(_ => {
