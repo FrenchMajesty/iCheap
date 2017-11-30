@@ -39,13 +39,21 @@ class Book extends Model
     }
 
     /**
+     * Get the dimensions informations of this book
+     */
+    public function dimensions()
+    {
+        return $this->hasOne('App\Book\BookDimensions');
+    }
+
+    /**
      * Set the book dimensions and create an entry
      * @param array $value Book's dimensions
      */
     public function setDimensionsAttribute(array $value)
     {
         if($this->id) {
-            $params = collect($value)->put('book_id' => $this->id);
+            $params = collect($value)->put('book_id', $this->id);
             BookDimensions::create($params->toArray());
         }
     }
