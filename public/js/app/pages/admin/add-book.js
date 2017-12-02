@@ -84,7 +84,7 @@ define(['jquery',
 					bookDetailsContainer.find('img').attr('src', book.image)
 				}else {
 					bookDetailsContainer.find('h4')
-						.before(`<img src="${book.image}" style="width: auto">`)
+						.before(`<img src="${book.image}" style="width: 80%">`)
 				}
 
 				return
