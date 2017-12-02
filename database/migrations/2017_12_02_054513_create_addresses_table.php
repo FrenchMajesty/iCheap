@@ -21,6 +21,7 @@ class CreateAddressesTable extends Migration
             $table->string('city');
             $table->string('state');
             $table->string('zip');
+            $table->string('country');
             $table->timestamps();
         });
     }

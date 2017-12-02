@@ -17,6 +17,7 @@ class Address extends Model
 		'city',
 		'state',
 		'zip',
+		'country',
 	];
 
 	/**
