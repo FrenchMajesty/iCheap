@@ -51,6 +51,14 @@ class User extends Authenticatable
     ];
 
     /**
+     * Get the address instance asssociated with this user
+     */
+    public function address()
+    {
+        return $this->hasOne('App\Model\Accounts\Address');
+    }
+
+    /**
      * Get the orders associated with this user
      */
     public function orders()
