@@ -39,6 +39,22 @@
                                         @endif
 
                                         <p class="form-row form-row-last validate-required">
+                                            <label>Address</label>
+                                            <input id="address" type="text" value="{{old('address')}}" placeholder="Enter your full address here" name="address" class="input-text" required>
+                                            <input type="hidden" name="address_1">
+                                            <input type="hidden" name="address_2">
+                                            <input type="hidden" name="city">
+                                            <input type="hidden" name="zip">
+                                            <input type="hidden" name="state">
+                                            <input type="hidden" name="country">
+                                        </p>
+                                        @if ($errors->has('address'))
+                                        <span class="help-block red-text">
+                                            <strong>{{ $errors->first('address') }}</strong>
+                                        </span>
+                                        @endif
+
+                                        <p class="form-row form-row-last validate-required">
                                             <label>Email</label>
                                             <input type="email" value="{{old('new-email')}}" placeholder="Enter your email" name="new-email" class="input-text full-width" required>
                                         </p>
@@ -57,22 +73,7 @@
                                             <strong>{{ $errors->first('password') }}</strong>
                                         </span>
                                         @endif
-
-                                        <p class="form-row form-row-last validate-required">
-                                            <label>Address</label>
-                                            <input id="address" type="text" value="{{old('address')}}" placeholder="Enter your full address here" name="address" class="input-text" required>
-                                            <input type="hidden" name="address_1">
-                                            <input type="hidden" name="address_2">
-                                            <input type="hidden" name="city">
-                                            <input type="hidden" name="zip">
-                                            <input type="hidden" name="state">
-                                            <input type="hidden" name="country">
-                                        </p>
-                                        @if ($errors->has('address'))
-                                        <span class="help-block red-text">
-                                            <strong>{{ $errors->first('address') }}</strong>
-                                        </span>
-                                        @endif
+                                        
                                         <div class="clear"></div>
                                         <p>By signing up on {{env('APP_NAME')}}, you attest that you have read the <a href="#">Terms &amp; Conditions of Use</a> and the <a href="#">Privacy Policy</a> and agree with their content.</p>
                                         <button type="submit" class="button col-md-12">Sign up now</button>
