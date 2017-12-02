@@ -60,7 +60,13 @@
 
                                         <p class="form-row form-row-last validate-required">
                                             <label>Address</label>
-                                            <input type="text" value="{{old('address')}}" placeholder="Enter your full address here" name="address" class="input-text" required>
+                                            <input id="address" type="text" value="{{old('address')}}" placeholder="Enter your full address here" name="address" class="input-text" required>
+                                            <input type="hidden" name="address_1">
+                                            <input type="hidden" name="address_2">
+                                            <input type="hidden" name="city">
+                                            <input type="hidden" name="zip">
+                                            <input type="hidden" name="state">
+                                            <input type="hidden" name="country">
                                         </p>
                                         @if ($errors->has('address'))
                                         <span class="help-block red-text">
@@ -118,5 +124,11 @@
         </div>
     </div>
 </div>
+@endsection
 
+@section('js')
+<script src="https://maps.googleapis.com/maps/api/js?key={{env('GOOGLE_MAPS_API_KEY')}}&libraries=geometry,places" type="text/javascript"></script>
+<script type="text/javascript">
+    requirejs(['app/pages/platform/login'])
+</script>
 @endsection

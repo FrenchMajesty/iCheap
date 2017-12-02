@@ -53,6 +53,12 @@ class RegisterController extends Controller
             'new-email' => 'required|email|max:255|unique:users,email',
             'password' => 'required|string|min:6',
             'address' => 'required|string|max:255',
+            'address_1' => 'required_with:address',
+            'address_2' => 'required_with:address|nullable',
+            'city' => 'required_with:address',
+            'zip' => 'required_with:address',
+            'state' => 'required_with:address',
+            'country' => 'required_with:address',
         ]);
     }
 
@@ -69,7 +75,14 @@ class RegisterController extends Controller
             'lastname' => $data['lastname'],
             'email' => $data['new-email'],
             'password' => bcrypt($data['password']),
-            'address' => $data['address'],
+            'address' => [
+                'address_1' => $data['address_1'],
+                'address_2' => $data['address_2'],
+                'city' => $data['city'],
+                'state' => $data['state'],
+                'zip' => $data['zip'],
+                'country' => $data['country'],
+            ],
             'account' => 'user',
             'rank' => 0,
         ]);
