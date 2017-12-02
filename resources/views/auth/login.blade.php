@@ -20,7 +20,7 @@
                                         {{ csrf_field() }}
                                         <p class="form-row form-row-first validate-required">
                                             <label>First Name</label>
-                                            <input type="text" value="{{old('firstname')}}" placeholder="Enter your first name here" name="firstname" class="input-text" required>
+                                            <input type="text" value="{{old('firstname')}}" placeholder="Enter your first name" name="firstname" class="input-text" required>
                                         </p>
                                         @if ($errors->has('firstname'))
                                         <span class="help-block red-text">
