@@ -17,7 +17,7 @@
             </div>
 
             @if($allOrdersCount == 0)
-            <p>This column is empty because you haven't made any transaction on {{env('APP_NAME')}} yet.</p>
+            <p>This column is empty because you haven't made any transaction on {{env('APP_NAME')}} yet.. What are you waiting for?!</p>
             @endif
 
             @if($user->orders->count() > 0)
