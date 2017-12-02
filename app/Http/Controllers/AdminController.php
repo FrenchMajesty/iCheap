@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use App\Book;
-use App\Desired\Order;
-use App\Desired\OrderStatus;
+use App\Model\Sell\Order;
+use App\Model\Sell\OrderStatus;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller

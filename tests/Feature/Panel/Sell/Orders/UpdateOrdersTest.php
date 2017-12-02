@@ -1,10 +1,10 @@
 <?php
 
-namespace Tests\Feature\Panel\Desired\Orders;
+namespace Tests\Feature\Panel\Sell\Orders;
 
 use App\User;
-use App\Desired\Order;
-use App\Desired\OrderStatus;
+use App\Model\Sell\Order;
+use App\Model\Sell\OrderStatus;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 

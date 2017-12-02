@@ -1,8 +1,8 @@
 <?php
 
 use Faker\Generator as Faker;
-use App\Desired\Order;
-use App\Desired\OrderStatus;
+use App\Model\Sell\Order;
+use App\Model\Sell\OrderStatus;
 use App\User;
 use App\Book;
 
