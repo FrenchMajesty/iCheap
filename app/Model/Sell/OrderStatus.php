@@ -29,6 +29,6 @@ class OrderStatus extends Model
      */
     public function currentOrders()
     {
-    	return $this->hasMany('App\Desired\Order','status_id');
+    	return $this->hasMany('App\Model\Sell\Order','status_id');
     }
 }

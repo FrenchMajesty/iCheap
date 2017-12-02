@@ -55,7 +55,7 @@ class User extends Authenticatable
      */
     public function orders()
     {
-        return $this->hasMany('App\Desired\Order');
+        return $this->hasMany('App\Model\Sell\Order');
     }
 
     /**
@@ -63,7 +63,7 @@ class User extends Authenticatable
      */
     public function ordersDone()
     {
-        return $this->hasMany('App\Desired\Order')->onlyTrashed();
+        return $this->hasMany('App\Model\Sell\Order')->onlyTrashed();
     }
 
     /**
