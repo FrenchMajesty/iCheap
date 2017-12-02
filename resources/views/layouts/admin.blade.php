@@ -103,7 +103,7 @@
                                 <ul class="dropdown-menu">
                                     <li><a href="#">Edit my Profile</a></li>
                                     <li><a href="{{route('index')}}">Return to Site</a></li>
-                                    <li><a href="#">Log Out</a></li>
+                                    <li><a href="{{route('logout')}}">Log Out</a></li>
                                 </ul>
                             </li>
                         </ul>
