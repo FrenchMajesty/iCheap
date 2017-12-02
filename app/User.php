@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Model\Accounts\Address;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -64,5 +65,24 @@ class User extends Authenticatable
     public function ordersDone()
     {
         return $this->hasMany('App\Desired\Order')->onlyTrashed();
+    }
+
+    /**
+     * Create an address instance for this user
+     * @param array $value Address components
+     */
+    public function setAddressAttribute(array $value)
+    {
+        if($this->id) {
+            Address::create([
+                'user_id' => $this->id,
+                'address' => $value['address_1'],
+                'address_2' => $value['address_2'],
+                'city' => $value['city'],
+                'state' => $value['state'],
+                'zip' => $value['zip'],
+                'country' => $value['country'],
+            ]);
+        }
     }
 }
