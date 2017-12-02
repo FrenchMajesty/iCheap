@@ -27,7 +27,7 @@ $factory->define(App\User::class, function (Faker $faker) {
         'rank' => 1,
         'photo' => $faker->imageUrl(),
         'address' => [
-            'address_1' => $faker->streetAddress
+            'address_1' => $faker->streetAddress,
             'address_2' => $faker->secondaryAddress,
             'city' => $faker->city,
             'zip' => $faker->postcode,
