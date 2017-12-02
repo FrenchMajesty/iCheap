@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use App\Book;
+use App\Book\BookDimensions;
 use App\Model\Sell\Order;
 use App\Model\Sell\OrderStatus;
 use Illuminate\Http\Request;
@@ -88,13 +89,13 @@ class AdminController extends Controller
             'image' => 'required|url',
             'authors' => 'required|string|max:140',
             'publisher' => 'required|string|max:140',
-            'description' => 'required|string|max:1000',
+            'description' => 'required|string|max:3000',
             'height' => 'required|numeric',
             'width' => 'required|numeric',
             'thickness' => 'required|numeric',
         ]);
 
-        return Book::create([
+        $book = Book::create([
             'isbn' => $request->isbn,
             'price' => $request->price,
             'title' => $request->title,
@@ -102,12 +103,16 @@ class AdminController extends Controller
             'authors' => $request->authors,
             'publisher' => $request->publisher,
             'description' => $request->description,
-            'dimensions' => [
-                'height' => $request->height,
-                'width' => $request->width,
-                'thickness' => $request->thickness,
-            ],
         ]);
+
+        BookDimensions::create([
+            'book_id' => $book->id,
+            'height' => $request->height,
+            'width' => $request->width,
+            'thickness' => $request->thickness,
+        ]);
+
+        return $book;
     }
 
     /**
