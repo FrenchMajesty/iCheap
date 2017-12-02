@@ -11,6 +11,9 @@
     	},
         google: {
             key: '{{env('GOOGLE_API_KEY')}}',
+            map: {
+                key: '{{env('GOOGLE_MAPS_API_KEY')}}',
+            },
         },
     })
 </script>
