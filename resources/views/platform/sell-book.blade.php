@@ -34,8 +34,11 @@
                                 </div>    
                                 
                                 <form action="" class="cart">
-                                    <button class="btn btn-warning btn-lg">Get Shipping Label</button>
+                                    <a href="{{route('create.order.sell',[$book->id])}}" class="btn btn-warning btn-lg" target="_blank">Get Shipping Label</a>
                                 </form>   
+                                @if(session('status'))
+                                    <div class="alert alert-danger">{{session('status')}}</div>
+                                @endif
                                 <div class="product-inner-category">
                                     <p>Author(s): {{$book->authors}}</p>
                                     <p>Publisher: {{$book->publisher}}</p>
