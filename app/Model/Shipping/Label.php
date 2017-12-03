@@ -19,13 +19,14 @@ class Label extends Model
     	'label_url',
     	'tracking_url',
     	'tracking_number',
+        'arrived_at',
     ];
 
     /**
      * The attributes that should be mutated to dates
      * @var array
      */
-    protected $dates = ['created_at','updated_at','deleted_at'];
+    protected $dates = ['arrived_at','created_at','updated_at','deleted_at'];
 
     /**
      * Get the order that belongs to this shipping label

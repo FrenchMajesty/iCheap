@@ -20,6 +20,7 @@ class CreateLabelsTable extends Migration
             $table->string('label_url');
             $table->string('tracking_url');
             $table->string('tracking_number');
+            $table->timestamp('arrived_at');
             $table->timestamps();
             $table->softDeletes();
 
