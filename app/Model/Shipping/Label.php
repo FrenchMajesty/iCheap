@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Label extends Model
 {	
 	use SoftDeletes;
-	
+
 	/**
 	 * The attributes that are mass assignable
 	 * @var array
@@ -20,4 +20,12 @@ class Label extends Model
     	'tracking_url',
     	'tracking_number',
     ];
+
+    /**
+     * Get the order that belongs to this shipping label
+     */
+    public function order()
+    {
+    	return $this->belongsTo('App\Model\Sell\Order');
+    }
 }

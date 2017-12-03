@@ -46,6 +46,14 @@ class Order extends Model
     }
 
     /**
+     * Get the shipping label associated with this order
+     */
+    public function shippingLabel()
+    {
+        return $this->hasOne('App\Model\Shipping\Label');
+    }
+
+    /**
      * Get the current status of the order
      */
     public function status()
