@@ -84,7 +84,7 @@ class OrderController extends Controller
             $rate = collect($shipment['rates'])->sortBy('amount')->first();
 
             $transaction = \Shippo_Transaction::create([
-                'rate' => $rate['object_id'].'z',
+                'rate' => $rate['object_id'],
                 'async' => false,
             ]);
         }catch (\Exception $e) {
@@ -108,7 +108,7 @@ class OrderController extends Controller
                 'tracking_url' => $transaction['tracking_url_provider'],
                 'tracking_number' => $transaction['tracking_number'],
             ]);
-            
+
             return redirect($transaction['label_url']);
         }
     }
