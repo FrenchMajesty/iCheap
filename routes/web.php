@@ -35,7 +35,7 @@ Route::group(['middleware' => 'auth'], function() {
 
 	Route::group(['prefix' => '/book'], function() {
 
-		Route::get('/sell/{id}', 'BookController@bookPage')->name('book.sell');
+		Route::get('/sell/{book}', 'BookController@bookPage')->name('book.sell');
 
 	});
 

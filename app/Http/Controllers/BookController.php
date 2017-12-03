@@ -25,12 +25,11 @@ class BookController extends Controller
 
     /**
      * Show the page of a book
-     * @param  int $id ID of the book to sell
+     * @param  \App\Book $book Book instance to view
      * @return \Illuminate\Http\Response     
      */
-    public function bookPage($id)
+    public function bookPage(Book $book)
     {
-        $book = Book::findOrFail($id);
         return view('platform.sell-book', compact('book'));
     }    
 }
