@@ -39,6 +39,12 @@ Route::group(['middleware' => 'auth'], function() {
 
 	});
 
+	Route::group(['prefix' => '/order'], function() {
+
+		Route::get('/sell/{book}', 'Sell\OrderController@store')->name('create.order.sell');
+
+	});
+
 });
 
 // ### ADMIN PANEL ### //
