@@ -35,6 +35,6 @@ class CreateLabelsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('labels');
+        Schema::dropIfExists('sell_shipping_labels');
     }
 }
