@@ -13,6 +13,12 @@
 
 Auth::routes();
 
+Route::model('user', 'User');
+
+Route::model('book', 'App\Book');
+
+Route::model('order.sell', 'Model\Sell\Order');
+
 Route::get('/', 'HomeController@index')->name('index');
 
 Route::post('/search/sell', 'BookController@searchForBookToSell')->name('search');
