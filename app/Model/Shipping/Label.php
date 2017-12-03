@@ -9,6 +9,12 @@ class Label extends Model
 {	
 	use SoftDeletes;
 
+    /**
+     * The table associated with this model
+     * @var string
+     */
+    protected $table = 'sell_shipping_labels';
+
 	/**
 	 * The attributes that are mass assignable
 	 * @var array
