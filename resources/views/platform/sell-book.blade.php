@@ -47,8 +47,8 @@
                                     </ul>
                                     <div class="tab-content">
                                         <div role="tabpanel" class="tab-pane fade in active" id="home">
-                                            <h2>Product Description</h2>  
-                                            <p>{{$book->description}}</p>
+                                            <h2>Book Description</h2>  
+                                            <p>{!! $book->description !!}</p>
                                         </div>
                                         <div role="tabpanel" class="tab-pane fade" id="profile">
                                             <h2>Reviews</h2>
