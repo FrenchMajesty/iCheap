@@ -7,7 +7,7 @@
 | account informations, passwords, and see past and current orders.
 |
 */
-define(['jquery','app/api/google/locator'], ($, Locator) => { 
+define(['jquery','app/mod/address-decomposer'], ($, Decomposer) => { 
 	
 	return (option) => {
 		const module = {
@@ -24,9 +24,9 @@ define(['jquery','app/api/google/locator'], ($, Locator) => {
 			if(module.options.passwordWasSubmitted) {
 				scrollToPasswordContainer()
 			}
-			const input = $('#address')[0]
-			Locator.initAddressField(input)
-			bindUIEvents()
+			
+			// Init Google places address searcher
+			Decomposer({selector: '#address'})
 		}	
 
 		/**
