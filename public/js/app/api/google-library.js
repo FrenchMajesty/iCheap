@@ -57,8 +57,8 @@ define(['jquery','config'], ($, appConfig) => {
 	 				const book = {
 	 					authors: data.authors,
 	 					publisher: `${data.publisher} on ${data.publishedDate}`,
-	 					title: `${data.title} ${data.subtitle}`,
-	 					description: data.description,
+	 					title: `${data.title} ${data.subtitle ? data.subtitle : ''}`,
+	 					description: data.description ? data.description : '',
 	 					image: data.imageLinks.medium,
 	 					dimensions: {
 	 						height: dim.height.match(/[\d\.]+/)[0],
