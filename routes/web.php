@@ -21,6 +21,8 @@ Route::model('order.sell', 'Model\Sell\Order');
 
 Route::get('/', 'HomeController@index')->name('index');
 
+Route::get('/email/verify', 'UserController@verifyEmail')->name('verify.email');
+
 Route::post('/search/sell', 'BookController@searchForBookToSell')->name('search');
 
 Route::group(['middleware' => 'auth'], function() {

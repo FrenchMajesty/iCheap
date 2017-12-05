@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Auth;
 use App\User;
+use App\Model\Accounts\Registration\EmailVerificationToken;
 use App\Model\Accounts\Address;
 use Illuminate\Http\Request;
 
@@ -19,6 +20,29 @@ class UserController extends Controller
 		$ordersDone = $user->orders()->paginate(7);
 
 		return view('platform.account', compact('user', 'ordersDone'));
+	}
+
+	/**
+	 * Handle the validating of a user's email address
+	 * @param  \Illuminate\Http\Request $request Request
+	 * @return \Illuminate\Http\Response           
+	 */
+	public function verifyEmail(Request $request)
+	{
+		$this->validate($request, [
+			'token' => 'required|exists:email_verification_tokens|reject_soft_deleted:email_verification_tokens,token',
+		]);
+
+		$token = EmailVerificationToken::where('token', $request->token)->first();
+		$token->user->email_verified = true;
+		$token->user->save();
+		$token->delete();
+
+		if($request->user()) {
+			return redirect()->route('account')->with('status', 'Your email was successfully verified!');
+		}
+
+		return redirect()->route('login')->with('status', 'Your email was successfully verified!');
 	}
 
 	/**
@@ -47,14 +71,14 @@ class UserController extends Controller
 
 		Address::where('user_id', $request->user()->id)->delete();
 		Address::create([
-            'user_id' => $user->id,
-            'address' => $request->address_1,
-            'address_2' => $request->address_2,
-            'city' => $request->city,
-            'state' => $request->state,
-            'zip' => $request->zip,
-            'country' => $request->country,
-        ]);
+			'user_id' => $user->id,
+			'address' => $request->address_1,
+			'address_2' => $request->address_2,
+			'city' => $request->city,
+			'state' => $request->state,
+			'zip' => $request->zip,
+			'country' => $request->country,
+		]);
 
 		return back()->with('status','Your account details were successfully updated!');
 	}
