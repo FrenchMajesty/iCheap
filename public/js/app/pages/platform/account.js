@@ -66,7 +66,7 @@ define(['jquery','app/mod/address-decomposer'], ($, Decomposer) => {
 		}
 
 		function activateUpdateButton() {
-			$('#save-info').attr('disabled', '').removeClass('disabled')
+			$('#save-info').removeAttr('disabled').removeClass('disabled')
 		}
 
 		/**
