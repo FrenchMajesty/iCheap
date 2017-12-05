@@ -40,7 +40,7 @@ class OrderController extends Controller
      */
     public function store(Request $request, Book $book)
     {
-        $fromAddress = [
+        $toAddress = [
             'name' => env('SHIPPING_FROM_NAME'),
             'company' => env('SHIPPING_FROM_COMPANY'),
             'street1' => env('SHIPPING_FROM_STREET'),
@@ -53,7 +53,7 @@ class OrderController extends Controller
         ];
 
         $user = User::find($request->user()->id);
-        $toAddress = [
+        $fromAddress = [
             'name' => $user->firstname.' '.$user->lastname,
             'email' => $user->email,
             'street1' => $user->address->address,
