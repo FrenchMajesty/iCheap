@@ -75,6 +75,15 @@ class User extends Authenticatable
     }
 
     /**
+     * Return the full name of this user
+     * @return string User's full name
+     */
+    public function getNameAttribute()
+    {
+        return $this->firstname.' '.$this->lastname;
+    }
+
+    /**
      * Create an address instance for this user
      * @param array $value Address components
      */
