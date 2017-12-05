@@ -21,7 +21,7 @@ Route::model('order.sell', 'Model\Sell\Order');
 
 Route::get('/', 'HomeController@index')->name('index');
 
-Route::get('/email/verify', 'UserController@verifyEmail')->name('verify.email');
+Route::get('/email/verify', 'EmailController@verifyUserEmail')->name('verify.email');
 
 Route::post('/search/sell', 'BookController@searchForBookToSell')->name('search');
 
