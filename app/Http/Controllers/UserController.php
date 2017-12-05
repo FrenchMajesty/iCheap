@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Auth;
 use App\User;
+use App\Model\Accounts\Address;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -31,13 +32,29 @@ class UserController extends Controller
 			'firstname' => 'required|string|max:255',
 			'lastname' => 'required|string|max:255',
 			'address' => 'required|string|max:255',
+			'address_1' => 'required_with:address',
+			'address_2' => 'nullable',
+			'city' => 'required_with:address',
+			'zip' => 'required_with:address',
+			'state' => 'required_with:address',
+			'country' => 'required_with:address',
 		]);
 
 		$user = User::find($request->user()->id);
 		$user->firstname = $request->firstname;
 		$user->lastname = $request->lastname;
-		$user->address = $request->address;
 		$user->save();
+
+		Address::where('user_id', $request->user()->id)->delete();
+		Address::create([
+            'user_id' => $user->id,
+            'address' => $request->address_1,
+            'address_2' => $request->address_2,
+            'city' => $request->city,
+            'state' => $request->state,
+            'zip' => $request->zip,
+            'country' => $request->country,
+        ]);
 
 		return back()->with('status','Your account details were successfully updated!');
 	}
