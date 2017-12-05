@@ -106,17 +106,17 @@
                         </li>
                         <li><a href="#">About Us</a></li>
                         <li><a href="#">Contact Us</a></li>
-                        @if(!\Auth::user())
+                        @guest
                             <li {{ ($route == 'login' || $route == 'register')  ? 'class=active' : '' }}>
                                 <a href="{{route('login')}}">Sign Up/Login</a>
                             </li>
-                        @elseif(Auth::user()->account == 'admin')
-                            <li><a href="{{route('admin.index')}}">Admin Panel</a></li>
-                            <li><a href="{{route('logout')}}">Logout</a></li>
                         @else
+                            @if(Auth::user()->account == 'admin')
+                                <li><a href="{{route('admin.index')}}">Admin Panel</a></li>
+                            @endif
                             <li><a href="#">My account</a></li>
                             <li><a href="{{route('logout')}}">Logout</a></li>
-                        @endif
+                        @endguest
                     </ul>
                 </div>  
             </div>
