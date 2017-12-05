@@ -27,4 +27,20 @@ class Address extends Model
 	{
 		return $this->belongsTo('App\User');
 	}
+
+	/**
+	 * Return the complete address fully assembled
+	 * @return string Address
+	 */
+	public function getFormattedAttribute()
+	{
+		return implode(' ', [
+			$this->address, 
+			$this->address_2, 
+			',',
+			$this->city, 
+			$this->zip,
+			$this->country,
+		]);
+	}
 }
