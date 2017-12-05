@@ -90,7 +90,7 @@
                             <div class="clear"></div>
                             <p class="form-row form-row-wide">
                                 <label>Address</label>
-                                <input type="text" value="{{old('address') ?: $user->address}}" placeholder="Enter your mailing address" name="address" class="input-text" required>
+                                <input type="text" value="{{old('address') ?: $user->address->formatted}}" placeholder="Enter your mailing address" name="address" class="input-text" required>
                             </p>
                             @if ($errors->has('address'))
                             <span class="help-block red-text">
