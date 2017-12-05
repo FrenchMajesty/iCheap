@@ -34,6 +34,6 @@ class NewUserRegistered
             'token' => str_random(50),
         ]);
 
-        Mail::to($event->user)->send(new VerifyEmail($user, $verification->token));
+        Mail::to($event->user)->send(new VerifyEmail($event->user, $verification->token));
     }
 }
