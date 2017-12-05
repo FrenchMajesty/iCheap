@@ -12,6 +12,7 @@ define(['jquery','app/api/google/locator'], ($, Locator) => {
 		const module = {
 			options: $.extend(true, {
 				selector: '#address',
+				onResponse: () => {},
 			},option),
 		}
 		
@@ -58,6 +59,7 @@ define(['jquery','app/api/google/locator'], ($, Locator) => {
 		 			}
 		 		})
 
+		 		module.options.onResponse()
 		 		setAddressComponents(address)
 		 	})
 		 }
