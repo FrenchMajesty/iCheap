@@ -51,6 +51,14 @@ class User extends Authenticatable
     ];
 
     /**
+     * Get the email verification token generated for this user
+     */
+    public function emailVerificationToken()
+    {
+        return $this->hasOne('App\Model\Accounts\Registration\EmailVerificationToken');
+    }
+
+    /**
      * Get the address instance asssociated with this user
      */
     public function address()
