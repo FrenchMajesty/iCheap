@@ -130,6 +130,6 @@
 @section('js')
 <script src="https://maps.googleapis.com/maps/api/js?key={{env('GOOGLE_MAPS_API_KEY')}}&libraries=geometry,places" type="text/javascript"></script>
 <script type="text/javascript">
-    requirejs(['app/pages/platform/login'])
+    requirejs(['app/mod/address-decomposer'],(module) => module({selector: '#address'}))
 </script>
 @endsection
