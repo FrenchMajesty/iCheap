@@ -81,6 +81,7 @@ class User extends Authenticatable
     public function setAddressAttribute(array $value)
     {
         if($this->id) {
+            Address::where('user_id', $this->id)->delete();
             Address::create([
                 'user_id' => $this->id,
                 'address' => $value['address_1'],
