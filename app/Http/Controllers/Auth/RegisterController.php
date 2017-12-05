@@ -55,7 +55,7 @@ class RegisterController extends Controller
             'password' => 'required|string|min:6',
             'address' => 'required|string|max:255',
             'address_1' => 'required_with:address',
-            'address_2' => 'required_with:address|nullable',
+            'address_2' => 'nullable',
             'city' => 'required_with:address',
             'zip' => 'required_with:address',
             'state' => 'required_with:address',
