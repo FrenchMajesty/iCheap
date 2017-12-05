@@ -9,7 +9,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header" data-background-color="blue">
-                        <h4 class="title">Orders</h4>
+                        <h4 class="title">Selling Orders</h4>
                         <p class="category">Here you can manage and edit the desired orders.</p>
                     </div>
                     <div class="card-content table-responsive">
@@ -45,6 +45,7 @@
 		                                		<a href="#" target="_blank">{{$order->user->name}}</a>
 		                                	</td>
 											<td>
+												{{$order->book->title}} ({{$order->book->isbn}})
 												<button type="button" rel="tooltip" data-action="book" class="btn btn-warning btn-simple btn-xs" data-original-title="See More">
 		                                            <i class="material-icons">search</i>
 		                                        </button>
@@ -88,6 +89,7 @@
 		                                		<a href="#" target="_blank">{{$order->user->name}}</a>
 		                                	</td>
 											<td>
+												{{$order->book->title}} ({{$order->book->isbn}})
 												<button type="button" rel="tooltip" data-action="book" class="btn btn-warning btn-simple btn-xs" data-original-title="See More">
 		                                            <i class="material-icons">search</i>
 		                                        </button>
