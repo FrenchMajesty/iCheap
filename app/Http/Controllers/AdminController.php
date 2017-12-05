@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use App\Book;
+use App\User;
 use App\Book\BookDimensions;
 use App\Model\Sell\Order;
 use App\Model\Sell\OrderStatus;
@@ -62,6 +63,17 @@ class AdminController extends Controller
         $orders = Order::with('book')->get();
         $completed = Order::onlyTrashed()->get();
         return view('admin.orders', compact('orders', 'completed'));
+    }
+
+    /**
+     * Show the management page for users
+     * 
+     * @return \Illuminate\Http\Response           
+     */
+    public function usersManager()
+    {   
+        $users = User::all();
+        return view('admin.users', compact('users'));
     }
 
     /**
