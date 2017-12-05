@@ -15,7 +15,9 @@ class UserController extends Controller
 	public function accountPage()
 	{
 		$user = Auth::user();
-		return view('platform.account', compact('user'));
+		$ordersDone = $user->orders()->paginate(7);
+
+		return view('platform.account', compact('user', 'ordersDone'));
 	}
 
 	/**

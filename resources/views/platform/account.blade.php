@@ -42,11 +42,11 @@
         </div>
         @endif
 
-        @if($user->ordersDone->count() > 0)
+        @if($ordersDone->count() > 0)
         <div class="single-sidebar">
             <h2 class="sidebar-title">Orders Completed</h2>
 
-            @foreach($user->ordersDone as $order)
+            @foreach($ordersDone as $order)
             <div class="thubmnail-recent" data-order data-isbn="{{$order->book->isbn}}">
              <div class="col-md-3">
                 <img src="{{$order->book->image}}" class="recent-thumb" alt="">
@@ -55,12 +55,14 @@
             <h2><a href="#">{{$order->book->title}}</a></h2>
             <div class="product-sidebar-price col-md-8">
                 Amount Received: <ins>${{$order->payment_amount}}</ins><br>
-                Status: {{$order->status->name}}<br>
+                Date completed: {{$order->created_at->format('M d, Y')}}<br>
                 Author(s): {{$order->book->authors}}<br>
                 ISBN: {{$order->book->isbn}}<br>
             </div>                          
         </div>
         @endforeach
+
+        {{ $orders->links() }}
     </div>
     @endif
 </div>
