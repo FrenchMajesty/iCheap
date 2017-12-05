@@ -19,7 +19,7 @@
 <script data-template="order-book-details" type="text/x-handlebars-template">
 	<div class="card card-profile container">
 		<div class="content"><br/>
-			<img src="@{{image}}" style="width: auto">
+			<img src="@{{image}}" style="width: 80%">
 			<h4 class="card-title">@{{title}}</h4>
 			<p class="card-content">
 				@{{{additional}}}
