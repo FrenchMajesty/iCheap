@@ -59,7 +59,7 @@ class AdminController extends Controller
      */
     public function ordersManager()
     {
-        $orders = Order::all();
+        $orders = Order::with('book')->get();
         $completed = Order::onlyTrashed()->get();
         return view('admin.orders', compact('orders', 'completed'));
     }
