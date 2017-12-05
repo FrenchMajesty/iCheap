@@ -90,7 +90,7 @@
                             <div class="clear"></div>
                             <p class="form-row form-row-wide">
                                 <label>Address</label>
-                                <input type="text" value="{{old('address') ?: $user->address->formatted}}" placeholder="Enter your mailing address" name="address" class="input-text" required>
+                                <input id="address" type="text" value="{{old('address') ?: $user->address->formatted}}" placeholder="Enter your mailing address" name="address" class="input-text" required>
                             </p>
                             @if ($errors->has('address'))
                             <span class="help-block red-text">
@@ -169,6 +169,7 @@
 @endsection
 
 @section('js')
+<script src="https://maps.googleapis.com/maps/api/js?key={{env('GOOGLE_MAPS_API_KEY')}}&libraries=geometry,places" type="text/javascript"></script>
 <script type="text/javascript">
     const config = {
         passwordWasSubmitted: '{{session('password-status').$errors->first('password')}}' ? true : false

@@ -7,7 +7,7 @@
 | account informations, passwords, and see past and current orders.
 |
 */
-define(['jquery'], ($) => { 
+define(['jquery','app/api/google/locator'], ($, Locator) => { 
 	
 	return (option) => {
 		const module = {
@@ -24,7 +24,8 @@ define(['jquery'], ($) => {
 			if(module.options.passwordWasSubmitted) {
 				scrollToPasswordContainer()
 			}
-
+			const input = $('#address')[0]
+			Locator.initAddressField(input)
 			bindUIEvents()
 		}	
 
