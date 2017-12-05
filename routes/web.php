@@ -52,6 +52,8 @@ Route::group(['prefix' => '/admin', 'middleware' => 'isAdmin'], function() {
 
 	Route::get('/', 'AdminController@index')->name('admin.index');
 
+	Route::get('/users', 'AdminController@usersManager')->name('admin.users');
+
 	Route::group(['prefix' => '/books'], function() {
 
 		Route::get('/', 'AdminController@booksManager')->name('admin.books');

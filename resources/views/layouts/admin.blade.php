@@ -66,7 +66,7 @@
                         </a>
                     </li>
                     <li {{(\Request::route()->getName() == 'admin.users') ? 'class=active' : '' }}>
-                        <a href="#">
+                        <a href="{{route('admin.users')}}">
                             <i class="material-icons">person</i>
                             <p>Users</p>
                         </a>
