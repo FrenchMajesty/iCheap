@@ -62,7 +62,7 @@
         </div>
         @endforeach
 
-        {{ $orders->links() }}
+        {{ $ordersDone->links() }}
     </div>
     @endif
 </div>
