@@ -40,6 +40,7 @@ class Address extends Model
 			',',
 			$this->city, 
 			$this->zip,
+			$this->state,
 			$this->country,
 		]);
 	}
