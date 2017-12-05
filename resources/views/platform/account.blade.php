@@ -91,6 +91,12 @@
                             <p class="form-row form-row-wide">
                                 <label>Address</label>
                                 <input id="address" type="text" value="{{old('address') ?: $user->address->formatted}}" placeholder="Enter your mailing address" name="address" class="input-text" required>
+                                <input type="hidden" name="address_1" value="{{$user->address->address}}">
+                                <input type="hidden" name="address_2" value="{{$user->address->address_2}}">
+                                <input type="hidden" name="city" value="{{$user->address->city}}">
+                                <input type="hidden" name="zip" value="{{$user->address->zip}}">
+                                <input type="hidden" name="state" value="{{$user->address->state}}">
+                                <input type="hidden" name="country" value="{{$user->address->country}}">
                             </p>
                             @if ($errors->has('address'))
                             <span class="help-block red-text">
@@ -101,7 +107,7 @@
                             <div class="clear"></div>
                         </div>
                         <p>
-                            <button type="submit" class="button full-width">Save My Informations</button>
+                            <button id="save-info" type="submit" class="button full-width">Save My Informations</button>
                         </p>
                         @if (session('status'))
                         <div class="alert alert-success">
