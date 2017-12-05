@@ -68,8 +68,9 @@ define(['jquery','app/api/google/locator'], ($, Locator) => {
 		 */
 		 function setAddressComponents(address) {
 		 	const extra = address.extra ? address.extra : ''
+		 	const streetNumber = address.street_number ? address.street_number : 00
 
-		 	$('input[name="address_1"]').val(address.street_number+' '+address.street)
+		 	$('input[name="address_1"]').val(streetNumber+' '+address.street)
 		 	$('input[name="address_2"]').val(address.apt ? `Apt. ${address.apt} ${extra}` : extra)
 		 	$('input[name="city"]').val(address.city)
 		 	$('input[name="zip"]').val(address.zip)
