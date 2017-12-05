@@ -24,7 +24,6 @@
 	                            </tr></thead>
 	                            <tbody>
 	                            	@foreach($orders as $order)
-	                            		@php($order->book)
 		                                <tr data-id="{{$order->id}}">
 		                                	<td class="td-actions text-right">
 		                                        <button type="button" rel="tooltip" data-original-title="Mark as Received"
