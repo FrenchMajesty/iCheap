@@ -20,6 +20,7 @@ class CreateEmailVerificationTokensTable extends Migration
             $table->timestamps();
             $table->softDeletes();
 
+            $table->unique(['user_id','token']);
             $table->foreign('user_id')->references('id')->on('users');
         });
     }
