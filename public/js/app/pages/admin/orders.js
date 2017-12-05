@@ -49,7 +49,7 @@ define(['jquery',
 		 */
 		function showBookDetails(e) {
 			const row = $(e.target).parents('tr')
-			const order = module.options.orders.data.reduce(order => order.id == row.data('id'))
+			const order = module.options.orders.data.filter(order => order.id == row.data('id'))[0]
 
 			const info = [
 				`<p>Author${order.book.authors.length > 1 ? 's' : ''}: ${order.book.authors}</p>`,
