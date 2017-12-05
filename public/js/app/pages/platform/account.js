@@ -26,7 +26,11 @@ define(['jquery','app/mod/address-decomposer'], ($, Decomposer) => {
 			}
 			
 			// Init Google places address searcher
-			Decomposer({selector: '#address'})
+			Decomposer({
+				selector: '#address',
+				onResponse: activateUpdateButton,
+			})
+			bindUIEvents()
 		}	
 
 		/**
@@ -57,12 +61,22 @@ define(['jquery','app/mod/address-decomposer'], ($, Decomposer) => {
 	        $('html, body').animate({ scrollTop: $('#login-form-wrap').offset().top }, 1000)
 		}
 
+		function disableUpdateButton() {
+			$('#save-info').attr('disabled', 'disabled').addClass('disabled')
+		}
+
+		function activateUpdateButton() {
+			$('#save-info').attr('disabled', '').removeClass('disabled')
+		}
+
 		/**
 		 * Bind events to the page DOM
 		 * @return {Void} 
 		 */
 		function bindUIEvents() {
 			$('#search input').on('keyup', updateOrdersDisplayed)
+			$('#address').on('keydown', disableUpdateButton)
+			$('#address-1').on('change', activateUpdateButton)
 		}
 			
 		module.init()
