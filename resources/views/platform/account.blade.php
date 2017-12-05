@@ -170,6 +170,10 @@
 
 @section('js')
 <script type="text/javascript">
-    requirejs(['app/pages/platform/account'])
+    const config = {
+        passwordWasSubmitted: '{{session('password-status').$errors->first('password')}}' ? true : false
+    }
+
+    requirejs(['app/pages/platform/account'],(module) => module(config))
 </script>
 @endsection
