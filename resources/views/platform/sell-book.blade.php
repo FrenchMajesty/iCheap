@@ -34,7 +34,7 @@
                                 </div>    
                                 
                                 <form action="" class="cart">
-                                    <a href="{{route('create.order.sell',[$book->id])}}" class="btn btn-warning btn-lg" target="_blank">Get Shipping Label</a>
+                                    <a id="label" href="{{route('create.order.sell',[$book->id])}}" class="btn btn-warning btn-lg" target="_blank">Get Shipping Label</a>
                                 </form>   
                                 @if(session('status'))
                                     <div class="alert alert-danger">{{session('status')}}</div>
@@ -87,6 +87,6 @@
 
 @section('js')
 <script type="text/javascript">
-	
+    requirejs(['app/pages/platform/sell/book'], (module) => module({pageRefreshDelay: 4000}))
 </script>
 @endsection
