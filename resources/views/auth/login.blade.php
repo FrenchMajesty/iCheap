@@ -73,10 +73,10 @@
                                             <strong>{{ $errors->first('password') }}</strong>
                                         </span>
                                         @endif
-                                        
+
                                         <div class="clear"></div>
                                         <p>By signing up on {{env('APP_NAME')}}, you attest that you have read the <a href="#">Terms &amp; Conditions of Use</a> and the <a href="#">Privacy Policy</a> and agree with their content.</p>
-                                        <button type="submit" class="button col-md-12">Sign up now</button>
+                                        <button id="register-button" type="submit" class="button col-md-12">Sign up now</button>
                                     </div>
                                 </div>
                             </div>
@@ -91,7 +91,7 @@
                         <h2>Login</h2>
 
                         <p>If you have an account, please enter your details to login below. If you are a new around, fill out the register section on the left.</p>
-
+                        
                         {{ csrf_field() }}
                         <p class="form-row form-row-first">
                             <label for="username">Email</label>
@@ -130,6 +130,6 @@
 @section('js')
 <script src="https://maps.googleapis.com/maps/api/js?key={{env('GOOGLE_MAPS_API_KEY')}}&libraries=geometry,places" type="text/javascript"></script>
 <script type="text/javascript">
-    requirejs(['app/mod/address-decomposer'],(module) => module({selector: '#address'}))
+    requirejs(['app/pages/platform/login'])
 </script>
 @endsection
