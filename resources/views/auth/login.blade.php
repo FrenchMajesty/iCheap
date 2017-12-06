@@ -91,7 +91,11 @@
                         <h2>Login</h2>
 
                         <p>If you have an account, please enter your details to login below. If you are a new around, fill out the register section on the left.</p>
-                        
+                        @if (session('status'))
+                        <div class="alert alert-success">
+                            {{ session('status') }}
+                        </div>
+                        @endif
                         {{ csrf_field() }}
                         <p class="form-row form-row-first">
                             <label for="username">Email</label>
