@@ -8,7 +8,8 @@ Hey there {{$user->name}}!<br>
 
 Welcome to {{env('APP_NAME')}}. Ready to get started? <br>
 
-The next step for you is to confirm your address email so we can send you shipping labels via email and update on the status of your orders. We won't spam you I promise. <br>
+The next step for you is to confirm your address email so we can send you shipping labels via email and update on the status of your orders. <br>
+<i>We won't spam you I promise.</i> <br>
 
 To verify your email, click the button below.
 
