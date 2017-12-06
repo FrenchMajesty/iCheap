@@ -20,12 +20,6 @@ class VerifyEmail extends Mailable
     public $user;
 
     /**
-     * Model instance of the email verification token
-     * @var string
-     */
-    public $token;
-
-    /**
      * Main title of this email
      * @var string
      */
