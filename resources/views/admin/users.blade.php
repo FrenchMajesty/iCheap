@@ -9,8 +9,8 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header" data-background-color="blue">
-                        <h4 class="title">Books</h4>
-                        <p class="category">Here you can manage and edit the desired books.</p>
+                        <h4 class="title">Users</h4>
+                        <p class="category">Here you see all of the registered users and their account informations.</p>
                     </div>
                     <div class="card-content table-responsive">
                     	@if(count($users) > 0)
