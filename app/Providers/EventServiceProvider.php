@@ -19,6 +19,9 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\Sell\Shipping\GenerateOrderLabel' => [
             'App\Listeners\Sell\Shipping\LabelWasGenerated',
         ],
+        'App\Events\Sell\Order\BookReceived' => [
+            'App\Listeners\Sell\Order\BookWasReceived'
+        ],
     ];
 
     /**
