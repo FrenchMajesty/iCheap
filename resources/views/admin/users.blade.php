@@ -49,6 +49,6 @@
 
 @section('js')
 <script>
-	requirejs(['app/pages/admin/books'], module => module(config))
+	requirejs(['app/ui-mod/datatable'], DataTables => DataTables(['table']))
 </script>
 @endsection
