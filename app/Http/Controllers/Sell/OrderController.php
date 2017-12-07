@@ -6,6 +6,7 @@ use App\Book;
 use App\User;
 use App\Model\Sell\Order;
 use App\Model\Shipping;
+use App\Events\Sell\Shipping\GenerateOrderLabel;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -108,6 +109,8 @@ class OrderController extends Controller
                 'tracking_url' => $transaction['tracking_url_provider'],
                 'tracking_number' => $transaction['tracking_number'],
             ]);
+
+            event(new GenerateOrderLabel($order));
 
             return redirect($transaction['label_url']);
         }
