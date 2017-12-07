@@ -56,6 +56,14 @@ class Order extends Model
     }
 
     /**
+     * Get the shipping of the payment instance if it has been paid
+     */
+    public function paymentShipping()
+    {
+        return $this->hasOne('App\Model\Shipping\Payment');
+    }
+
+    /**
      * Get the current status of the order
      */
     public function status()
