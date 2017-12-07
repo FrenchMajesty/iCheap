@@ -1,4 +1,4 @@
-@section('pageTitle', 'Books Manager')
+@section('pageTitle', 'Users Manager')
 
 @extends ('layouts.admin')
 
