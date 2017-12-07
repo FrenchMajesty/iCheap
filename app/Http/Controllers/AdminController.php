@@ -8,6 +8,7 @@ use App\User;
 use App\Book\BookDimensions;
 use App\Model\Sell\Order;
 use App\Model\Sell\OrderStatus;
+use App\Events\Sell\Order\BookReceived;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -165,6 +166,7 @@ class AdminController extends Controller
 
         if($status->code == 'SHIPMENT_RECEIVED') {
             $order->received_at = Carbon::now();
+            event(new BookReceived($order));
         }else if($status->code == 'PAYMENT_SENT') {
             $order->payment_amount = $request->amount;
             $order->delete();
