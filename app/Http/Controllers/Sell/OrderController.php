@@ -54,16 +54,7 @@ class OrderController extends Controller
             'phone' => env('SHIPPING_FROM_PHONE'),
         ];
 
-        $fromAddress = [
-            'name' => $user->name,
-            'email' => $user->email,
-            'street1' => $user->address->address,
-            'street2' => $user->address->address_2,
-            'city' => $user->address->city,
-            'state' => $user->address->state,
-            'zip' => $user->address->zip,
-            'country' => $user->address->country,
-        ];
+        $fromAddress = $user->address->shippoFormat;
 
         try {
             $data = Shipping\Label::generateLabel($book, $fromAddress, $toAddress);

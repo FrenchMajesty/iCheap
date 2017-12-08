@@ -29,8 +29,26 @@ class Address extends Model
 	}
 
 	/**
+	 * Return the complete address in a array with keys that satistify Shippo's API
+	 * @return array
+	 */
+	public function getShippoFormatAttribute()
+	{
+		return [
+            'name' => $this->user->name,
+            'email' => $this->user->email,
+            'street1' => $this->address,
+            'street2' => $this->address_2,
+            'city' => $this->city,
+            'state' => $this->state,
+            'zip' => $this->zip,
+            'country' => $this->country,
+        ];
+	}
+
+	/**
 	 * Return the complete address fully assembled
-	 * @return string Address
+	 * @return string 
 	 */
 	public function getFormattedAttribute()
 	{
