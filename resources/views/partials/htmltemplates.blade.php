@@ -28,7 +28,7 @@
 	</div>
 </script>
 <script data-template="order-fulfill" type="text/x-handlebars-template">
-	<form class="row" id="order-fulfill" method="POST" action="{{route('admin.orders.update')}}">
+	<form class="row" id="order-fulfill" method="POST" action="{{route('admin.orders.update.paid')}}">
 		{{csrf_field()}}
 		<input type="hidden" name="id" value="@{{id}}">
 		<input type="hidden" name="status" value="@{{status}}">

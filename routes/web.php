@@ -74,7 +74,9 @@ Route::group(['prefix' => '/admin', 'middleware' => 'isAdmin'], function() {
 
 		Route::get('/', 'AdminController@ordersManager')->name('admin.orders');
 
-		Route::post('/update', 'AdminController@updateOrder')->name('admin.orders.update');
+		Route::post('/update/received', 'AdminController@markOrderAsReceived')->name('admin.orders.update.received');
+
+		Route::post('/update/paid', 'AdminController@markOrderAsPaid')->name('admin.orders.update.paid');
 
 	});
 

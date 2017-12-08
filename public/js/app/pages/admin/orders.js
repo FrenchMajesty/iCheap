@@ -89,7 +89,7 @@ define(['jquery',
 			formData.append('id', row.data('id'))
 			formData.append('status', status)
 
-			FormHandler.submitRequest(module.options.url.edit, formData)
+			FormHandler.submitRequest(module.options.url.received, formData)
 				.then(_ => swal('Success!','The order status was successfully updated.','success'))
 				.fail(_ => swal('Oops!','An error occured was updating the status of this order.','error'))
 		}
@@ -151,8 +151,7 @@ define(['jquery',
 
 						reject(errors)
 					} else {
-						reject(['An error occured while fulfilling this order.',
-								'It may already be fulfilled, please refresh the page.'].join(''))
+						reject('An error occured while fulfilling this order. It may already be fulfilled, please refresh the page.')
 					}
 				})
 			})

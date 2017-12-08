@@ -42,7 +42,7 @@
 		                                        <div class="ripple-container"></div></button>
 		                                    </td>
 		                                	<td>
-		                                		<a href="#" target="_blank">{{$order->user->name}}</a>
+		                                		<a href="#{{$order->user->id}}" target="_blank">{{$order->user->name}}</a>
 		                                	</td>
 											<td>
 												{{$order->book->title}} ({{$order->book->isbn}})
@@ -117,8 +117,8 @@
 <script>
 	const config = {
 		url: {
-			edit: '{{route('admin.orders.update')}}',
-			delete: '{{route('admin.books.delete.desired')}}',
+			received: '{{route('admin.orders.update.received')}}',
+			completed: '{{route('admin.orders.update.paid')}}',
 		},
 		orders: {
 			status: {

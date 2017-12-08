@@ -7,6 +7,7 @@ use App\Book;
 use App\User;
 use App\Book\BookDimensions;
 use App\Model\Sell\Order;
+use App\Model\Shipping\Payment;
 use App\Model\Sell\OrderStatus;
 use App\Events\Sell\Order\BookReceived;
 use Illuminate\Http\Request;
@@ -146,33 +147,48 @@ class AdminController extends Controller
     }
 
     /**
-     * Handle request to update an order for a desired book
+     * Handle request to update an order for a desired book and mark it as received
      * @param  \Illuminate\Http\Request $request Request
      * @return void           
      */
-    public function updateOrder(Request $request)
+    public function markOrderAsReceived(Request $request)
     {
         $this->validate($request, [
             'id' => 'required|numeric|exists:orders|reject_soft_deleted:orders',
-            'status' => 'required|string|exists:desired_books_order_status,code',
             'tracking' => 'nullable|string|max:50',
-            'amount' => 'required_if:status,PAYMENT_SENT|max:10000',
         ]);
 
-        $status = OrderStatus::where('code', $request->status)->first();
+        $status = OrderStatus::where('code', 'SHIPMENT_RECEIVED')->first();
         $order = Order::find($request->id);
         $order->status_id = $status->id;
         $order->payment_tracking = $request->tracking;
-
-        if($status->code == 'SHIPMENT_RECEIVED') {
-            $order->received_at = Carbon::now();
-            event(new BookReceived($order));
-        }else if($status->code == 'PAYMENT_SENT') {
-            $order->payment_amount = $request->amount;
-            $order->delete();
-        }
-
+        $order->received_at = Carbon::now();
         $order->save();
+
+        event(new BookReceived($order));
+    }
+
+    /**
+     * Handle request to update an order for a desired book and mark it as paid off
+     * @param  \Illuminate\Http\Request $request Request
+     * @return void           
+     */
+    public function markOrderAsPaid(Request $request)
+    {
+        $this->validate($request, [
+            'id' => 'required|numeric|exists:orders|reject_soft_deleted:orders',
+            'tracking' => 'nullable|string|max:50',
+            'amount' => 'required|max:10000',
+        ]);
+
+        $status = OrderStatus::where('code', 'PAYMENT_SENT')->first();
+        $order = Order::find($request->id);
+        $order->status_id = $status->id;
+        $order->payment_tracking = $request->tracking;
+        $order->payment_amount = $request->amount;
+       // $order->save();
+       // $order->delete();
+       return $order;
     }
 
 }
