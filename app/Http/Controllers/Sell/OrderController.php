@@ -63,25 +63,25 @@ class OrderController extends Controller
             return back()->with('status', 'An error occured while generating your shipping label. ['.$errors.']');
         }
 
-        if($data['transaction']['status'] == 'SUCCESS') {
+        if($data['status'] == 'SUCCESS') {
 
             $order = Order::create([
                 'user_id' => $user->id,
                 'book_id' => $book->id,
-                'book_tracking' => $data['transaction']['tracking_number'],
+                'book_tracking' => $data['tracking_number'],
                 'status_id' => 1,
             ]);
 
             Shipping\Label::create([
                 'order_id' => $order->id,
-                'shippo_object_id' => $data['shipment']['object_id'],
-                'label_url' => $data['transaction']['label_url'],
-                'tracking_url' => $data['transaction']['tracking_url_provider'],
-                'tracking_number' => $data['transaction']['tracking_number'],
+                'shippo_object_id' => $data['shipment_object_id'],
+                'label_url' => $data['label_url'],
+                'tracking_url' => $data['tracking_url_provider'],
+                'tracking_number' => $data['tracking_number'],
             ]);
 
             event(new GenerateOrderLabel($order));
-            return redirect($data['transaction']['label_url']);
+            return redirect($data['label_url']);
         }
     }
 

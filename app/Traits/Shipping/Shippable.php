@@ -30,9 +30,8 @@ trait Shippable
             'async' => false,
         ]);
 
-        return [
-            'shipment' => $shipment,
-            'transaction' => $transaction,
-        ];
+        $transaction['shipment_object_id'] = $shipment['object_id'];
+
+        return $transaction;
 	}
 }
