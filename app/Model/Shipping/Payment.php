@@ -35,6 +35,22 @@ class Payment extends Model
     protected $dates = ['created_at','updated_at','deleted_at'];
 
     /**
+     * The components of the company's address from which the check payments are sent out
+     * @var array
+     */
+    private $companyAddress = [
+        'name' => env('SHIPPING_FROM_NAME'),
+        'company' => env('SHIPPING_FROM_COMPANY'),
+        'street1' => env('SHIPPING_FROM_STREET'),
+        'city' => env('SHIPPING_FROM_CITY'),
+        'zip' => env('SHIPPING_FROM_ZIP'),
+        'state' => env('SHIPPING_FROM_STATE'),
+        'country' => env('SHIPPING_FROM_COUNTRY'),
+        'email' => env('SHIPPING_FROM_EMAIL'),
+        'phone' => env('SHIPPING_FROM_PHONE'),
+    ];
+
+    /**
      * Get the order for which this payment was sent out for
      */
     public function order()
@@ -50,6 +66,8 @@ class Payment extends Model
      */
     static public function generateLabel(array $fromAddress, array $toAddress)
     {
+        $from = $fromAddress ?: $this->companyAddress;
+        
         $package = [
             'height' => 22,
             'width' => 11,
