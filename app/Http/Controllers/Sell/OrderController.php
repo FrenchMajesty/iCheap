@@ -55,7 +55,7 @@ class OrderController extends Controller
         ];
 
         $fromAddress = [
-            'name' => $user->firstname.' '.$user->lastname,
+            'name' => $user->name,
             'email' => $user->email,
             'street1' => $user->address->address,
             'street2' => $user->address->address_2,
