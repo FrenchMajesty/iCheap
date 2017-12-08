@@ -7,10 +7,10 @@
 Here is the shipping label for your book *"{{$order->book->title}}"*. <br><br>
 
 - The order ID is : **#{{$order->id}}**
-- The tracking number is: <{{$order->shippingLabel->tracking_url}}>
+- The tracking number is: [{{$order->shippingLabel->tracking_number}}]({{$order->shippingLabel->tracking_url}})
 
 After you send your textbook in the mail, you can track it with the tracking number on this page:
-[{{$order->shippingLabel->tracking_url}}]({{$order->shippingLabel->tracking_url}})
+<{{$order->shippingLabel->tracking_url}}>
 
 **Click the button below to get your shipping label.**
 
