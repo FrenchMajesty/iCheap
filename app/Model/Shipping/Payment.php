@@ -35,22 +35,6 @@ class Payment extends Model
     protected $dates = ['created_at','updated_at','deleted_at'];
 
     /**
-     * The components of the company's address from which the check payments are sent out
-     * @var array
-     */
-    private $companyAddress = [
-        'name' => env('SHIPPING_FROM_NAME'),
-        'company' => env('SHIPPING_FROM_COMPANY'),
-        'street1' => env('SHIPPING_FROM_STREET'),
-        'city' => env('SHIPPING_FROM_CITY'),
-        'zip' => env('SHIPPING_FROM_ZIP'),
-        'state' => env('SHIPPING_FROM_STATE'),
-        'country' => env('SHIPPING_FROM_COUNTRY'),
-        'email' => env('SHIPPING_FROM_EMAIL'),
-        'phone' => env('SHIPPING_FROM_PHONE'),
-    ];
-
-    /**
      * Get the order for which this payment was sent out for
      */
     public function order()
@@ -60,13 +44,23 @@ class Payment extends Model
 
     /**
      * Generate the cheapest shipping label for the check to be sent
-     * @param  array  $fromAddress The address the book is coming from
+     * @param  array|null  $fromAddress The address the book is coming from or null
      * @param  array  $toAddress   The address the book is going to
      * @return array              Transaction and shipment informations
      */
-    static public function generateLabel(array $fromAddress, array $toAddress)
+    static public function generateLabel($fromAddress, array $toAddress)
     {
-        $from = $fromAddress ?: $this->companyAddress;
+        $from = $fromAddress ?: [
+            'name' => env('SHIPPING_FROM_NAME'),
+            'company' => env('SHIPPING_FROM_COMPANY'),
+            'street1' => env('SHIPPING_FROM_STREET'),
+            'city' => env('SHIPPING_FROM_CITY'),
+            'zip' => env('SHIPPING_FROM_ZIP'),
+            'state' => env('SHIPPING_FROM_STATE'),
+            'country' => env('SHIPPING_FROM_COUNTRY'),
+            'email' => env('SHIPPING_FROM_EMAIL'),
+            'phone' => env('SHIPPING_FROM_PHONE'),
+        ];
         
         $package = [
             'height' => 22,
@@ -76,7 +70,7 @@ class Payment extends Model
             'weight' => 0.7,
             'mass_unit' => 'oz',
         ];
-
-        return self::ship($package, $fromAddress, $toAddress);
+        
+        return self::ship($package, $from, $toAddress);
     }
 }
