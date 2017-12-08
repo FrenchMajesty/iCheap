@@ -4,12 +4,13 @@
 # {{$title}}
 
 
-Hey there {{$user->name}}!<br>
+Hey there {{$user->name}}!
 
-Welcome to {{env('APP_NAME')}}. Ready to get started? <br>
+Welcome to {{env('APP_NAME')}}. Ready to get started? 
 
-The next step for you is to confirm your address email so we can send you shipping labels via email and update on the status of your orders. <br>
-<i>We won't spam you I promise.</i> <br>
+The next step for you is to confirm your address email so we can send you shipping labels via email and update on the status of your orders.
+
+*We won't spam you I promise.* 
 
 To verify your email, click the button below.
 
@@ -20,10 +21,10 @@ To verify your email, click the button below.
 @endif
 
 If you did not sign up on {{env('APP_NAME')}} and don't know what this email is about, just ignore it and have a fantastic rest of your day!
-<br><br>
-Thanks, <br>
 
--{{ env('APP_NAME') }} team
+Thanks, 
+
+-The {{ env('APP_NAME') }} team
 
 <div class="italic"><br><br>
 Do not reply to this email; it was automatically generated.<br>
