@@ -41,6 +41,7 @@ class OrderController extends Controller
      */
     public function store(Request $request, Book $book)
     {
+        $user = User::find($request->user()->id);
         $toAddress = [
             'name' => env('SHIPPING_FROM_NAME'),
             'company' => env('SHIPPING_FROM_COMPANY'),
@@ -53,7 +54,6 @@ class OrderController extends Controller
             'phone' => env('SHIPPING_FROM_PHONE'),
         ];
 
-        $user = User::find($request->user()->id);
         $fromAddress = [
             'name' => $user->firstname.' '.$user->lastname,
             'email' => $user->email,
@@ -65,54 +65,32 @@ class OrderController extends Controller
             'country' => $user->address->country,
         ];
 
-        $package = [
-            'height' => $book->dimensions->height,
-            'width' => $book->dimensions->width,
-            'length' => $book->dimensions->thickness,
-            'distance_unit' => 'cm',
-            'weight' => '3.5',
-            'mass_unit' => 'lb',
-        ];
-
         try {
-            $shipment = \Shippo_Shipment::create([
-                'address_from' => $fromAddress,
-                'address_to' => $toAddress,
-                'parcels' => [$package],
-                'async' => false,
-            ]);
-
-            $rate = collect($shipment['rates'])->sortBy('amount')->first();
-
-            $transaction = \Shippo_Transaction::create([
-                'rate' => $rate['object_id'],
-                'async' => false,
-            ]);
+            $data = Shipping\Label::generateLabel($book, $fromAddress, $toAddress);
         }catch (\Exception $e) {
             $errors = collect($e->jsonBody)->flatten()->implode(',');
             return back()->with('status', 'An error occured while generating your shipping label. ['.$errors.']');
         }
 
-        if($transaction['status'] == 'SUCCESS') {
+        if($data['transaction']['status'] == 'SUCCESS') {
 
             $order = Order::create([
-                'user_id' => $request->user()->id,
+                'user_id' => $user->id,
                 'book_id' => $book->id,
-                'book_tracking' => $transaction['tracking_number'],
+                'book_tracking' => $data['transaction']['tracking_number'],
                 'status_id' => 1,
             ]);
 
             Shipping\Label::create([
                 'order_id' => $order->id,
-                'shippo_object_id' => $shipment['object_id'],
-                'label_url' => $transaction['label_url'],
-                'tracking_url' => $transaction['tracking_url_provider'],
-                'tracking_number' => $transaction['tracking_number'],
+                'shippo_object_id' => $data['shipment']['object_id'],
+                'label_url' => $data['transaction']['label_url'],
+                'tracking_url' => $data['transaction']['tracking_url_provider'],
+                'tracking_number' => $data['transaction']['tracking_number'],
             ]);
 
             event(new GenerateOrderLabel($order));
-
-            return redirect($transaction['label_url']);
+            return redirect($data['transaction']['label_url']);
         }
     }
 
