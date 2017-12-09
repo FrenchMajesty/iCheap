@@ -7,7 +7,7 @@ use App\Book;
 use App\User;
 use App\Book\BookDimensions;
 use App\Model\Sell\Order;
-use App\Model\Shipping\Payment;
+use App\Model\Shipping;
 use App\Model\Sell\OrderStatus;
 use App\Events\Sell\Order\BookReceived;
 use Illuminate\Http\Request;
@@ -171,7 +171,7 @@ class AdminController extends Controller
     /**
      * Handle request to update an order for a desired book and mark it as paid off
      * @param  \Illuminate\Http\Request $request Request
-     * @return void           
+     * @return mixed           
      */
     public function markOrderAsPaid(Request $request)
     {
@@ -186,9 +186,23 @@ class AdminController extends Controller
         $order->status_id = $status->id;
         $order->payment_tracking = $request->tracking;
         $order->payment_amount = $request->amount;
-       // $order->save();
-       // $order->delete();
-       return $order;
+        $order->save();
+        $order->delete();
+
+        $toAddress = $order->user->address->shippoFormat;
+
+        try {
+            $data = Shipping\Payment::generateLabel(null, $toAddress); // fromAddress's default is the company address
+        }catch(\Exception $e) {
+            $errors = collect($e->jsonBody)->flatten()->implode(',');
+
+            return response()
+                    ->json(['errors' => ['api' => [$errors]]], 422);
+        }
+
+        if($data['transaction']['status'] == 'SUCCESS') {
+            return $data;
+        }
     }
 
 }
