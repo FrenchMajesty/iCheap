@@ -199,7 +199,7 @@ class AdminController extends Controller
 
             $order->status_id = $status->id;
             $order->payment_amount = $request->amount;
-            $order->completed_at = Carbon::now();
+            $order->paid_at = Carbon::now();
             $order->save();
 
             return $data;
