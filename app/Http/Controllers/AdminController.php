@@ -178,18 +178,11 @@ class AdminController extends Controller
     {
         $this->validate($request, [
             'id' => 'required|numeric|exists:orders|reject_soft_deleted:orders',
-            'tracking' => 'nullable|string|max:50',
             'amount' => 'required|max:10000',
         ]);
 
         $status = OrderStatus::where('code', 'PAYMENT_SENT')->first();
         $order = Order::find($request->id);
-        $order->status_id = $status->id;
-        $order->payment_tracking = $request->tracking;
-        $order->payment_amount = $request->amount;
-        $order->save();
-        $order->delete();
-
         $toAddress = $order->user->address->shippoFormat;
 
         try {
@@ -203,6 +196,12 @@ class AdminController extends Controller
 
         if($data['status'] == 'SUCCESS') {
             event(new PaymentSent($order, $data));
+
+            $order->status_id = $status->id;
+            $order->payment_amount = $request->amount;
+            $order->completed_at = Carbon::now();
+            $order->save();
+
             return $data;
         }
     }
