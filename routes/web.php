@@ -21,13 +21,19 @@ Route::model('order.sell', 'Model\Sell\Order');
 
 Route::get('/', 'HomeController@index')->name('index');
 
-Route::get('/email/verify', 'EmailController@verifyUserEmail')->name('verify.email');
+Route::get('/email/verify', 'EmailController@verifyEmail')->name('verify.email');
 
 Route::post('/search/sell', 'BookController@searchForBookToSell')->name('search');
 
 Route::group(['middleware' => 'auth'], function() {
 
 	Route::get('/home', 'UserController@accountPage')->name('account');
+
+	Route::get('/verify', 'UserController@verifyEmailPage')->name('request.verify.email')
+	->middleware('emailNotVerified');
+
+	Route::post('/verify', 'EmailController@sendVerificationEmail')->name('request.verify.email')
+	->middleware('emailNotVerified');
 
 	Route::post('/account', 'UserController@updateAccountDetails')->name('account.update');
 
@@ -43,7 +49,8 @@ Route::group(['middleware' => 'auth'], function() {
 
 	Route::group(['prefix' => '/order'], function() {
 
-		Route::get('/sell/{book}', 'Sell\OrderController@store')->name('create.order.sell');
+		Route::get('/sell/{book}', 'Sell\OrderController@store')->name('create.order.sell')
+		->middleware('emailVerified');
 
 	});
 
