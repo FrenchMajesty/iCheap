@@ -22,13 +22,20 @@ class PaymentSent
     public $order;
 
     /**
+     * Transaction informations returned from the Shippo API
+     * @var array
+     */
+    public $label;
+
+    /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(Order $order)
+    public function __construct(Order $order, array $labelData)
     {
         $this->order = $order;
+        $this->label = $labelData;
     }
 
     /**

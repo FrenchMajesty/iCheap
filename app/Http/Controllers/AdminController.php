@@ -202,7 +202,7 @@ class AdminController extends Controller
         }
 
         if($data['status'] == 'SUCCESS') {
-            event(new PaymentSent($order));
+            event(new PaymentSent($order, $data));
             return $data;
         }
     }
