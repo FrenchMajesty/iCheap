@@ -157,13 +157,11 @@ class AdminController extends Controller
     {
         $this->validate($request, [
             'id' => 'required|numeric|exists:orders|reject_soft_deleted:orders',
-            'tracking' => 'nullable|string|max:50',
         ]);
 
         $status = OrderStatus::where('code', 'SHIPMENT_RECEIVED')->first();
         $order = Order::find($request->id);
         $order->status_id = $status->id;
-        $order->payment_tracking = $request->tracking;
         $order->received_at = Carbon::now();
         $order->save();
 
