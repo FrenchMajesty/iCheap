@@ -29,6 +29,14 @@ class PaymentWasSentOut
      */
     public function handle(PaymentSent $event)
     {
+        Payment::create([
+            'order_id' => $event->order->id,
+            'shippo_object_id' => $event->label['shipment_object_id'],
+            'label_url' => $event->label['label_url'],
+            'tracking_url' => $event->label['tracking_url_provider'],
+            'tracking_number' => $event->label['tracking_number'],
+        ]);
+
         $recipient = $event->order->user;
         Mail::to($recipient)->send(new PaymentSentEmail($event->order));
     }
