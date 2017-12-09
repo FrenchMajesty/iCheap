@@ -15,13 +15,15 @@ class CreateBookDimensionsTable extends Migration
     {
         Schema::create('book_dimensions', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('book_id')->unique();
+            $table->unsignedInteger('book_id')->unique();
             $table->double('weight')->nullable();
             $table->double('height');
             $table->double('width');
             $table->double('thickness');
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('book_id')->references('id')->on('books');
         });
     }
 

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLabelsTable extends Migration
+class CreateSellShippingLabelsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,7 +15,7 @@ class CreateLabelsTable extends Migration
     {
         Schema::create('sell_shipping_labels', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('order_id');
+            $table->unsignedInteger('order_id');
             $table->string('shippo_object_id');
             $table->string('label_url');
             $table->string('tracking_url');

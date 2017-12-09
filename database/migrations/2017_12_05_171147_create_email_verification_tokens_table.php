@@ -15,13 +15,13 @@ class CreateEmailVerificationTokensTable extends Migration
     {
         Schema::create('email_verification_tokens', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id');
-            $table->text('token');
+            $table->unsignedInteger('user_id');
+            $table->string('token');
             $table->timestamps();
             $table->softDeletes();
 
-            $table->unique(['user_id','token']);
             $table->foreign('user_id')->references('id')->on('users');
+            $table->unique(['user_id','token']);
         });
     }
 
