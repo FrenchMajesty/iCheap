@@ -22,6 +22,15 @@ class UserController extends Controller
 	}
 
 	/**
+	 * Show the page for users to verify their emails
+	 * @return \Illuminate\Http\Response 
+	 */
+	public function verifyEmailPage()
+	{
+		return view('platform.verify-email');
+	}
+
+	/**
 	 * Handle request to update account's informations
 	 * @param  \Illuminate\Http\Request $request Request
 	 * @return \Illuminate\Http\Response           
