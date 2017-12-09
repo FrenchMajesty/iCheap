@@ -200,7 +200,7 @@ class AdminController extends Controller
                     ->json(['errors' => ['api' => [$errors]]], 422);
         }
 
-        if($data['transaction']['status'] == 'SUCCESS') {
+        if($data['status'] == 'SUCCESS') {
             return $data;
         }
     }
