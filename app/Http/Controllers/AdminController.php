@@ -9,6 +9,7 @@ use App\Book\BookDimensions;
 use App\Model\Sell\Order;
 use App\Model\Shipping;
 use App\Model\Sell\OrderStatus;
+use App\Events\Sell\Order\PaymentSent;
 use App\Events\Sell\Order\BookReceived;
 use Illuminate\Http\Request;
 
@@ -201,6 +202,7 @@ class AdminController extends Controller
         }
 
         if($data['status'] == 'SUCCESS') {
+            event(new PaymentSent($order));
             return $data;
         }
     }

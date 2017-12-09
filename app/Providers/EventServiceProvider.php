@@ -20,7 +20,10 @@ class EventServiceProvider extends ServiceProvider
             'App\Listeners\Sell\Shipping\LabelWasGenerated',
         ],
         'App\Events\Sell\Order\BookReceived' => [
-            'App\Listeners\Sell\Order\BookWasReceived'
+            'App\Listeners\Sell\Order\BookWasReceived',
+        ],
+        'App\Events\Sell\Order\PaymentSent' => [
+            'App\Listeners\Sell\Order\PaymentWasSentOut',
         ],
     ];
 
