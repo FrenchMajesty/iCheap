@@ -31,7 +31,6 @@
 	<form class="row" id="order-fulfill" method="POST" action="{{route('admin.orders.update.paid')}}">
 		{{csrf_field()}}
 		<input type="hidden" name="id" value="@{{id}}">
-		<input type="hidden" name="status" value="@{{status}}">
 		<div class="col-md-12">
 			<div class="form-group label-floating is-empty">
 				<label class="control-label">Amount of the Price Paid</label>

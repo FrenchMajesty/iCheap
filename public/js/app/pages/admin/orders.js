@@ -81,13 +81,8 @@ define(['jquery',
 			}
 
 			const row = $(e.target).parents('tr')
-			const status = $(e.target).attr('data-action') == 'received'
-							? module.options.orders.status.received
-							: module.options.orders.status.completed
-
 			const formData = new FormData()
 			formData.append('id', row.data('id'))
-			formData.append('status', status)
 
 			FormHandler.submitRequest(module.options.url.received, formData)
 				.then(_ => swal('Success!','The order status was successfully updated.','success'))
@@ -105,14 +100,9 @@ define(['jquery',
 			if($(e.target).attr('disabled')) return
 			
 			const row = $(e.target).parents('tr')
-			const status = $(e.target).attr('data-action') == 'received'
-							? module.options.orders.status.received
-							: module.options.orders.status.completed
-
 			const template = Templator('order-fulfill')
 			const html = template({
 				id: row.data('id'),
-				status: status,
 				price: '',
 			})
 
