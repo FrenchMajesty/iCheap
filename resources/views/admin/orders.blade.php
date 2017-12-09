@@ -50,7 +50,7 @@
 		                                            <i class="material-icons">search</i>
 		                                        </button>
 											</td>
-											<td>{{$order->created_at->diffForHumans()}}</td>
+											<td>{{$order->created_at->format('m/d/Y')}} ({{$order->created_at->diffForHumans()}})</td>
 		                                	<td>{{$order->status->name}}</td>
 											
 		                                </tr>
