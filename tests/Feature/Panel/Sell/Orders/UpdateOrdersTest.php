@@ -2,7 +2,12 @@
 
 namespace Tests\Feature\Panel\Sell\Orders;
 
+use Mail;
 use App\User;
+use App\Mail\Sell\Shipping\Label as BookShippingLabelEmail;
+use App\Mail\Sell\Order\BookReceived as BookReceivedEmail;
+use App\Mail\Sell\Order\PaymentSent as PaymentSentEmail;
+use App\Model\Shipping\Label;
 use App\Model\Sell\Order;
 use App\Model\Sell\OrderStatus;
 use Tests\TestCase;
@@ -25,6 +30,9 @@ class UpdateOrdersTest extends TestCase
             'account' => 'admin',
             'rank' => 2,
         ]);    	
+
+        // Set up mock emailing API
+        Mail::fake();
     }
     
     /**
@@ -32,20 +40,22 @@ class UpdateOrdersTest extends TestCase
      */
     public function testCanUpdateOrderStatusAsReceived()
     {
-    	// Given I have an admin some order and a new order status
+    	// Given I have an admin, an order with its shipping label and an order status
         $order = factory(Order::class)->create();
+        $label = factory(Label::class)->create([
+            'order_id' => $order->id,
+        ]);
         $status = factory(OrderStatus::class)->create([
             'code' => 'SHIPMENT_RECEIVED',
         ]);
 
     	// When the admin update the order's status
         $response = $this->actingAs($this->admin)
-                        ->post('/admin/orders/update', [
+                        ->post('/admin/orders/update/received', [
                             'id' => $order->id,
-                            'status' => $status->code,
                         ]);
 
-    	// Then it should be updated
+    	// Then it should be updated and the user should be notified
         $response->assertSuccessful();
         $this->assertDatabaseHas('orders', [
             'id' => $order->id,
@@ -56,6 +66,11 @@ class UpdateOrdersTest extends TestCase
             'id' => $order->id,
             'received_at' => null,
         ]);
+
+        Mail::assertSent(BookReceivedEmail::class, function($email) use ($order) {
+            return $email->hasTo($order->user->email) &&
+                    $email->order->id == $order->id;
+        });
     }
 
     /**
@@ -72,13 +87,12 @@ class UpdateOrdersTest extends TestCase
 
         // When the admin update the order's status
         $response = $this->actingAs($this->admin)
-                        ->post('/admin/orders/update', [
+                        ->post('/admin/orders/update/paid', [
                             'id' => $order->id,
-                            'status' => $status->code,
                             'amount' => $priceBought,
                         ]);
 
-        // Then it should be updated
+        // Then it should be updated and the user should be notified
         $response->assertSuccessful();
         $this->assertDatabaseHas('orders', [
             'id' => $order->id,
@@ -88,85 +102,47 @@ class UpdateOrdersTest extends TestCase
 
         $this->assertDatabaseMissing('orders', [
             'id' => $order->id,
-            'deleted_at' => null,
+            'paid_at' => null,
         ]);
+
+        Mail::assertSent(PaymentSentEmail::class, function($email) use ($order) {
+            return $email->hasTo($order->user->email) &&
+                    $email->order->id == $order->id;
+        });
     }
 
     /**
-     * Test that an admin cannot update an order's status if the order
-     * doesn't exist
+     * Test that an admin cannot update an order's status to paid out if the amount
+     * is larger than 10,000
      */
-    public function testCannotUpdateOrderStatusOnOrderThatDoesntExist()
+    public function testCannotUpdateOrderStatusAsPaidWhenAmountIsTooLarge()
     {
-        // Given I have an admin an order that no longer exists and 
-        // a new order status
+        // Given I have an admin, an order, a new order status, and a an amount paid
+        // for the book over 10,000
         $order = factory(Order::class)->create();
-        $status = factory(OrderStatus::class)->create();
-        Order::destroy($order->id);
+        $status = factory(OrderStatus::class)->create([
+            'code' => 'PAYMENT_SENT',
+        ]);
+        $priceBought = 100001;
 
         // When the admin update the order's status
         $response = $this->actingAs($this->admin)
-                        ->post('/admin/orders/update', [
+                        ->post('/admin/orders/update/paid', [
                             'id' => $order->id,
-                            'status' => $status->code,
+                            'amount' => $priceBought,
                         ]);
 
-        // Then it should fail validation
-        $response->assertStatus(302);
-    }
-
-    /**
-     * Test that an admin cannot update an order's status if the new
-     * status is invalid
-     */
-    public function testCannotUpdateOrderStatusWhenNewStatusIsNotValid()
-    {
-        // Given I have an admin some order and an new order status
-        // that no longer exists
-        $order = factory(Order::class)->create();
-        $status = factory(OrderStatus::class)->create();
-        OrderStatus::destroy($status->id);
-
-        // When the admin update the order's status
-        $response = $this->actingAs($this->admin)
-                        ->post('/admin/orders/update', [
-                            'id' => $order->id,
-                            'status' => $status->code,
-                        ]);
-
-        // Then it should fail validation and remain unchanged
+        // Then it should be fail validation and remain unchanged
         $response->assertStatus(302);
         $this->assertDatabaseMissing('orders', [
             'id' => $order->id,
             'status_id' => $status->id,
+            'payment_amount' => $priceBought,
         ]);
-    }
 
-    /**
-     * Test that an admin cannot update an order's status if the tracking
-     * ID is too long
-     */
-    public function testCannotUpdateOrderStatusWhenTrackingIDIsTooLong()
-    {
-        // Given I have an admin some order, a new order status and 
-        // a tracking ID over 50 char. long
-        $order = factory(Order::class)->create();
-        $status = factory(OrderStatus::class)->create();
-        $trackingNumber = str_repeat('a', 51);
-
-        // When the admin update the order's status
-        $response = $this->actingAs($this->admin)
-                        ->post('/admin/orders/update', [
-                            'id' => $order->id,
-                            'status' => $status->code,
-                            'tracking' => $trackingNumber,
-                        ]);
-
-        // Then it should fail validation and remain unchanged
-        $response->assertStatus(302);
-        $this->assertDatabaseMissing('orders', [
+        $this->assertDatabaseHas('orders', [
             'id' => $order->id,
-            'status_id' => $status->id,
+            'paid_at' => null,
         ]);
     }
 }
