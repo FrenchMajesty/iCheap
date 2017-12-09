@@ -2,6 +2,8 @@
 
 namespace App\Model\Shipping;
 
+use Shippo_Address;
+use Shippo_Object;
 use App\Traits\Shipping\Shippable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -44,13 +46,13 @@ class Payment extends Model
 
     /**
      * Generate the cheapest shipping label for the check to be sent
-     * @param  array|null  $fromAddress The address the book is coming from or null
-     * @param  array  $toAddress   The address the book is going to
+     * @param  Shippo_Object|null  $fromAddress The address the book is coming from or null
+     * @param  Shippo_Object  $toAddress   The address the book is going to
      * @return array              Transaction and shipment informations
      */
-    static public function generateLabel($fromAddress, array $toAddress)
+    static public function generateLabel($fromAddress, Shippo_Object $toAddress)
     {
-        $from = $fromAddress ?: [
+        $from = $fromAddress ?: Shippo_Address::create([
             'name' => env('SHIPPING_FROM_NAME'),
             'company' => env('SHIPPING_FROM_COMPANY'),
             'street1' => env('SHIPPING_FROM_STREET'),
@@ -60,7 +62,8 @@ class Payment extends Model
             'country' => env('SHIPPING_FROM_COUNTRY'),
             'email' => env('SHIPPING_FROM_EMAIL'),
             'phone' => env('SHIPPING_FROM_PHONE'),
-        ];
+            'validate' => true,
+        ]);
         
         $package = [
             'height' => 22,

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Sell;
 
+use Shippo_Address;
 use App\Book;
 use App\User;
 use App\Model\Sell\Order;
@@ -42,7 +43,8 @@ class OrderController extends Controller
     public function store(Request $request, Book $book)
     {
         $user = User::find($request->user()->id);
-        $toAddress = [
+        $fromAddress = $user->address->shippoFormat;
+        $toAddress = Shippo_Address::create([
             'name' => env('SHIPPING_FROM_NAME'),
             'company' => env('SHIPPING_FROM_COMPANY'),
             'street1' => env('SHIPPING_FROM_STREET'),
@@ -52,9 +54,7 @@ class OrderController extends Controller
             'country' => env('SHIPPING_FROM_COUNTRY'),
             'email' => env('SHIPPING_FROM_EMAIL'),
             'phone' => env('SHIPPING_FROM_PHONE'),
-        ];
-
-        $fromAddress = $user->address->shippoFormat;
+        ]);
 
         try {
             $data = Shipping\Label::generateLabel($book, $fromAddress, $toAddress);

@@ -2,6 +2,7 @@
 
 namespace App\Model\Shipping;
 
+use Shippo_Object;
 use App\User;
 use App\Book;
 use App\Traits\Shipping\Shippable;
@@ -48,11 +49,11 @@ class Label extends Model
     /**
      * Generate the cheapest shipping label for a book
      * @param  Book   $book        Book to be shipped
-     * @param  array  $fromAddress The address the book is coming from
-     * @param  array  $toAddress   The address the book is going to
+     * @param  Shippo_Object  $fromAddress The address the book is coming from
+     * @param  Shippo_Object  $toAddress   The address the book is going to
      * @return array              Transaction and shipment informations
      */
-    static public function generateLabel(Book $book, array $fromAddress, array $toAddress)
+    static public function generateLabel(Book $book, Shippo_Object $fromAddress, Shippo_Object $toAddress)
     {
         $package = [
             'height' => $book->dimensions->height,
