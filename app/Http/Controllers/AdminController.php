@@ -177,7 +177,7 @@ class AdminController extends Controller
     {
         $this->validate($request, [
             'id' => 'required|numeric|exists:orders|reject_soft_deleted:orders',
-            'amount' => 'required|max:10000',
+            'amount' => 'required|numeric|max:10000',
         ]);
 
         $status = OrderStatus::where('code', 'PAYMENT_SENT')->first();
