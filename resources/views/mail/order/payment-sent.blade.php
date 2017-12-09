@@ -5,6 +5,7 @@
 # Yo {{$order->user->firstname}} we've got some good news!
 
 We have examined the book "*{{$order->book->title}}*" you sent us {{$order->created_at->diffForHumans()}} and our team appraised it and wrote you a check for it of **${{number_format($order->payment_amount, 2)}}**. 
+
 We are going to be sending that over to you in the next couple of days.
 
 To track the delivery, please click the button below.
