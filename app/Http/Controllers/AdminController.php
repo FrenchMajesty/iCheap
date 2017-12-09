@@ -64,8 +64,9 @@ class AdminController extends Controller
     public function ordersManager()
     {
         $orders = Order::with('book')->get();
-        $completed = Order::onlyTrashed()->get();
-        return view('admin.orders', compact('orders', 'completed'));
+        $completed = Order::whereNotNull('paid_at')->get();
+        $archives = Order::onlyTrashed()->get();
+        return view('admin.orders', compact('orders', 'completed', 'archives'));
     }
 
     /**
