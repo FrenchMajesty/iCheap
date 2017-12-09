@@ -32,7 +32,7 @@ class PaymentSent
      *
      * @return void
      */
-    public function __construct(Order $order, array $labelData)
+    public function __construct(Order $order, $labelData)
     {
         $this->order = $order;
         $this->label = $labelData;
