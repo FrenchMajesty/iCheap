@@ -20,6 +20,7 @@ class CreatePaymentsTable extends Migration
             $table->string('label_url');
             $table->string('tracking_number');
             $table->string('tracking_url');
+            $table->timestamp('arrived_at');
             $table->timestamps();
             $table->softDeletes();
 

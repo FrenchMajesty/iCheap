@@ -28,13 +28,14 @@ class Payment extends Model
     	'tracking_url',
     	'tracking_number',
     	'label_url',
+        'arrived_at',
     ];
 
     /**
      * The attributes that should be mutated to dates
      * @var array
      */
-    protected $dates = ['created_at','updated_at','deleted_at'];
+    protected $dates = ['arrived_at','created_at','updated_at','deleted_at'];
 
     /**
      * Get the order for which this payment was sent out for
