@@ -16,20 +16,17 @@ class Order extends Model
     protected $fillable = [
         'user_id',
         'book_id',
-        'book_tracking',
-        'book_shipping_tracking_url',
-        'payment_tracking',
-        'payment_shipping_tracking_url',
         'payment_amount',
         'status_id',
         'received_at',
+        'paid_at',
     ];
 
     /**
      * The attributes that should be mutated to dates
      * @var array
      */
-    protected $dates = ['received_at','created_at','updated_at','deleted_at'];
+    protected $dates = ['received_at','paid_at','created_at','updated_at','deleted_at'];
 
     /**
      * Get the user associated with this order
