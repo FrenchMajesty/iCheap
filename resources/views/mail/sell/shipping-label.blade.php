@@ -20,9 +20,6 @@ After you send your textbook in the mail, you can track it with the tracking num
 @endcomponent
 @endif
 
-If you this email was sent to you by mistake, just ignore it and continue to have a fantastic rest of your day!
-
-
 Thanks,
 
 -The {{ env('APP_NAME') }} team
