@@ -114,7 +114,8 @@
                             @if(Auth::user()->account == 'admin')
                                 <li><a href="{{route('admin.index')}}">Admin Panel</a></li>
                             @endif
-                            <li><a href="#">My account</a></li>
+                            <li {{$route == 'account' ? 'class=active' : ''}}>
+                                <a href="{{route('account')}}">My account</a></li>
                             <li><a href="{{route('logout')}}">Logout</a></li>
                         @endguest
                     </ul>
