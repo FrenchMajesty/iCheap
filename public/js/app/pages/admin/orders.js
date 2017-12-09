@@ -123,8 +123,8 @@ define(['jquery',
 				showLoaderOnConfirm: true,
 				showCancelButton: true,
 				allowOutsideClick: false,
-			}).then(() => {
-				swal('Success!','The order status was successfully updated.','success')
+			}).then((data) => {
+				swal('Success!',`The order status was successfully updated. <a href="${data.label_url}" target="_blank">Click HERE</a> to get the shipping label for the check to be mailed.`,'success')
 			}, (dismiss) => {
 				if(dismiss != 'cancel') {
 					swal('Oops!','An error occured was updating the status of this order.','error')
@@ -142,7 +142,7 @@ define(['jquery',
 				const formData = new FormData(form[0])
 
 				FormHandler.submitRequest(form.attr('action'), formData)
-				.then(_ => resolve())
+				.then(data => resolve(JSON.parse(data)))
 				.fail(res => {
 					if(res.responseJSON.errors) {
 						const errors = Object.keys(res.responseJSON.errors).map(field => {
