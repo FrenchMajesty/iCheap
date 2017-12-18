@@ -27,15 +27,16 @@
                         <div class="slide-text">
                             <div class="container">
                                 <div class="row">
-                                    <div class="col-md-6 col-md-offset-3">
+                                    <div class="col-md-8 col-md-offset-2">
                                         <div class="slide-content">
-                                            <h2>We buy your textbooks!</h2>
-                                            <p>Enter your textbook's ISBN below and we will tell you how much we want to buy it from you <b>CASH</b>. Free shipping included.</p>
+                                            <h2>Sell your textbooks for cash!</h2>
+                                            <p>We will buy your textbook from you with <b>CASH</b>. Free shipping included.</p>
+                                            <br>
                                             <form method="POST" action="{{route('search')}}">
                                                 {{ csrf_field() }}
                                                 <div class="row">
                                                     <label>Book's ISBN</label>
-                                                    <input class="form-control" type="text" name="isbn" maxlength="15" placeholder="Copy your book's ISBN number here" value="{{old('isbn')}}" autofocus required>
+                                                    <input class="form-control" type="text" name="isbn" maxlength="15" placeholder="Copy your book's ISBN number here" value="{{old('isbn')}}" autofocus required style="height: 50px;">
                                                     <br>
                                                 </div>
                                                 @if ($errors->has('isbn'))
