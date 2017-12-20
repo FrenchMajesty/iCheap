@@ -3,11 +3,19 @@
 @extends ('layouts.platform')
 
 @section('content')
+<style>
+    .embeded {
+        height: 50px;
+        color: #fff;
+        font-weight: 700;
+        background: #1abc9c;
+    }
+</style>
 <div class="slider-area">
     <div class="zigzag-bottom"></div>
     <div id="slide-list" class="carousel carousel-fade slide" data-ride="carousel">
         
-        <div class="slide-bulletz">
+        <!--div class="slide-bulletz">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
@@ -17,7 +25,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div-->
 
         <div class="carousel-inner" role="listbox">
             <div class="item active">
@@ -36,7 +44,13 @@
                                                 {{ csrf_field() }}
                                                 <div class="row">
                                                     <label>Book's ISBN</label>
-                                                    <input class="form-control" type="text" name="isbn" maxlength="15" placeholder="Copy your book's ISBN number here" value="{{old('isbn')}}" autofocus required style="height: 50px;">
+                                                        <div class="input-group">
+                                                          <input type="text" name="isbn" class="form-control" placeholder="Search by ISBN Number" aria-label="Search by ISBN Number" maxlength="15" value="{{old('isbn')}}" autofocus required style="height: 50px;">
+                                                            <span class="input-group-btn">
+                                                                <button class="btn btn-secondary embeded" type="button">Search !
+                                                                </button>
+                                                            </span>
+                                                        </div>
                                                     <br>
                                                 </div>
                                                 @if ($errors->has('isbn'))
@@ -44,11 +58,6 @@
                                                         <strong>{{ $errors->first('isbn') }}</strong>
                                                     </span>
                                                 @endif
-                                                <div class="row">
-                                                    <center>
-                                                        <button class="btn btn-lg btn-primary" type="submit">Sell my Book!</button>
-                                                    </center>
-                                                </div>
                                             </form>
                                         </div>
                                     </div>
