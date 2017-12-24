@@ -12,13 +12,19 @@ class ContactUs extends Mailable
     use Queueable, SerializesModels;
 
     /**
+     * Dontaints the email's data
+     * @var array
+     */
+    public $data;
+
+    /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(array $data)
     {
-        //
+        $this->data = $data;
     }
 
     /**
@@ -28,6 +34,9 @@ class ContactUs extends Mailable
      */
     public function build()
     {
-        return $this->view('view.name');
+        return $this->markdown('mail.system.contact')
+                    ->from($this->data['email'])
+                    ->replyTo($this->data['email'], $this->data['name'])
+                    ->subject('You got a new message on the Contact Us Form!');
     }
 }
