@@ -47,7 +47,7 @@
                                                         <div class="input-group">
                                                           <input type="text" name="isbn" class="form-control" placeholder="Search by ISBN Number" aria-label="Search by ISBN Number" maxlength="15" value="{{old('isbn')}}" autofocus required style="height: 50px;">
                                                             <span class="input-group-btn">
-                                                                <button class="btn btn-secondary embeded" type="button">Search !
+                                                                <button class="btn btn-secondary embeded" type="submit">Search !
                                                                 </button>
                                                             </span>
                                                         </div>
