@@ -21,6 +21,10 @@ Route::model('order.sell', 'Model\Sell\Order');
 
 Route::get('/', 'HomeController@index')->name('index');
 
+Route::get('/contact', 'HomeController@contact')->name('contact');
+
+Route::post('/contact', 'HomeController@submitContact')->name('submit.contact');
+
 Route::get('/email/verify', 'EmailController@verifyEmail')->name('verify.email');
 
 Route::post('/search/sell', 'BookController@searchForBookToSell')->name('search');
