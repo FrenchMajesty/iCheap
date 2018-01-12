@@ -23,11 +23,15 @@ Route::get('/', 'HomeController@index')->name('index');
 
 Route::get('/contact', 'HomeController@contact')->name('contact');
 
+Route::get('/FAQ', 'HomeController@FAQ')->name('faq');
+
 Route::post('/contact', 'HomeController@submitContact')->name('submit.contact');
 
 Route::get('/email/verify', 'EmailController@verifyEmail')->name('verify.email');
 
 Route::post('/search/sell', 'BookController@searchForBookToSell')->name('search');
+
+Route::post('/shippo/transaction/update', 'Sell\OrderController@update')->name('shippo.update.transaction');
 
 Route::group(['middleware' => 'auth'], function() {
 

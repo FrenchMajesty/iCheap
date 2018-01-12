@@ -29,6 +29,16 @@ class HomeController extends Controller
     }
 
     /**
+     * Show the FAQ page.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function FAQ()
+    {
+        return view('platform.faq');
+    }
+
+    /**
      * Handle the request to send a contact message
      * 
      * @param  \Illuminate\Http\Request $request Request

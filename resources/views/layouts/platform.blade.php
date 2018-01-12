@@ -12,9 +12,9 @@
     <link href='//fonts.googleapis.com/css?family=Raleway:400,100' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="{{asset('css/owl.carousel.css')}}">
-    <link rel="stylesheet" href="{{asset('css/style.css')}}">
-    <link rel="stylesheet" href="{{asset('css/responsive.css')}}">
+    <link rel="stylesheet" href="{{asset('public/css/owl.carousel.css')}}">
+    <link rel="stylesheet" href="{{asset('public/css/style.css')}}">
+    <link rel="stylesheet" href="{{asset('public/css/responsive.css')}}">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -54,9 +54,9 @@
                         <li {{ $route == 'index' ? 'class=active' : '' }}>
                             <a href="{{route('index')}}">Home</a>
                         </li>
-                        <!--li{{$route == 'about' ? 'class=active' : ''}}>
-                            <a href="#">About Us</a>
-                        </li-->
+                        <li {{$route == 'faq' ? 'class=active' : ''}}>
+                            <a href="{{route('faq')}}">FAQ</a>
+                        </li>
                         <li {{$route == 'contact' ? 'class=active' : ''}}>
                             <a href="{{route('contact')}}">Contact Us</a>
                         </li>

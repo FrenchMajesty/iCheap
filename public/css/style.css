@@ -917,7 +917,7 @@ div.cart-collaterals ul.products li.product .price ins {
     margin-bottom: 10px;
     width: 100%;
 }
-#customer_details h3 {
+#customer_details h3, .customer_details h3 {
     color: #1abc9c;
     font-size: 20px;
     text-transform: uppercase;
