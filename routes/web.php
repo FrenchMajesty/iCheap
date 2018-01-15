@@ -25,6 +25,10 @@ Route::get('/contact', 'HomeController@contact')->name('contact');
 
 Route::get('/FAQ', 'HomeController@FAQ')->name('faq');
 
+Route::get('/privacy', 'HomeController@privacy')->name('privacy');
+
+Route::get('/terms', 'HomeController@terms')->name('conditions');
+
 Route::post('/contact', 'HomeController@submitContact')->name('submit.contact');
 
 Route::get('/email/verify', 'EmailController@verifyEmail')->name('verify.email');

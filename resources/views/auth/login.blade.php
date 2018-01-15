@@ -75,7 +75,7 @@
                                         @endif
 
                                         <div class="clear"></div>
-                                        <p>By signing up on {{env('APP_NAME')}}, you attest that you have read the <a href="#">Terms &amp; Conditions of Use</a> and the <a href="#">Privacy Policy</a> and agree with their content.</p>
+                                        <p>By signing up on {{env('APP_NAME')}}, you attest that you have read the <a href="{{route('conditions')}}" target="_blank">Terms &amp; Conditions of Use</a> and the <a href="{{route('privacy')}}" target="_blank">Privacy Policy</a> and agree with their content.</p>
                                         <button id="register-button" type="submit" class="button col-md-12">Sign up now</button>
                                     </div>
                                 </div>

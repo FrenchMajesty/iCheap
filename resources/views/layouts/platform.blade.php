@@ -90,8 +90,8 @@
                 <div class="col-md-8">
                     <div class="copyright">
                         <p>&copy; {{date('Y').' '.env('APP_NAME')}}. All Rights Reserved. Design by <a href="http://victron-tech.com" target="_blank">Victron Tech.</a> |
-                            <a href="#">Privacy Policy</a> |
-                            <a href="#">Terms and Conditions of Use</a>
+                            <a href="{{route('privacy')}}" target="_blank">Privacy Policy</a> |
+                            <a href="{{route('conditions')}}" target="_blank">Terms and Conditions of Use</a>
                         </p>
                     </div>
                 </div>

@@ -29,6 +29,24 @@ class HomeController extends Controller
     }
 
     /**
+     * Show the privacy policy page.
+     * @return \Illuminate\Http\Reponse 
+     */
+    public function privacy()
+    {
+        return view('platform.privacy');
+    }
+
+    /**
+     * Show the terms and conditions page.
+     * @return \Illuminate\Http\Reponse 
+     */
+    public function terms()
+    {
+        return view('platform.terms');
+    }
+
+    /**
      * Show the FAQ page.
      *
      * @return \Illuminate\Http\Response
