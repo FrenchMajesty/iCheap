@@ -8,7 +8,7 @@
     */
 define(['jquery',
 		'app/handler/form',
-		'app/ui-mod/BS-Notify',
+		'app/ui-mod/BS-notify',
 		'app/api/google-library',
 		'config',
 ], ($, handler, BSNotify, GoogleLibrary, appConfig) => { 
