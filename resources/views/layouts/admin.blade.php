@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <link rel="apple-touch-icon" sizes="76x76" href="{{asset('/img/apple-icon.png')}}" />
-    <link rel="icon" type="image/png" href="{{asset('/img/favicon.png')}}" />
+    <link rel="apple-touch-icon" sizes="76x76" href="{{asset('public/img/apple-icon.png')}}" />
+    <link rel="icon" type="image/png" href="{{asset('public/img/favicon.png')}}" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
     
@@ -13,15 +13,15 @@
     <meta name="viewport" content="width=device-width" />
 
     <!-- Bootstrap core CSS     -->
-    <link href="{{asset('/css/bootstrap.min.css')}}" rel="stylesheet" />
+    <link href="{{asset('public/css/bootstrap.min.css')}}" rel="stylesheet" />
 
     <!--  Material Dashboard CSS    -->
-    <link href="{{asset('/css/material-dashboard.css')}}" rel="stylesheet"/>
+    <link href="{{asset('public/css/material-dashboard.css')}}" rel="stylesheet"/>
 
     <!--  CSS for Demo Purpose, don't include it in your project     -->
-    <link href="{{asset('/css/sweetalert2.css')}}" rel="stylesheet" />
-    <link href="{{asset('/css/dataTables.bs.min.css')}}" rel="stylesheet" />
-    <link href="{{asset('/css/demo.css')}}" rel="stylesheet" />
+    <link href="{{asset('public/css/sweetalert2.css')}}" rel="stylesheet" />
+    <link href="{{asset('public/css/dataTables.bs.min.css')}}" rel="stylesheet" />
+    <link href="{{asset('public/css/demo.css')}}" rel="stylesheet" />
 
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
@@ -32,7 +32,7 @@
 
     <div class="wrapper">
 
-        <div class="sidebar" data-color="blue" data-image="{{asset('/img/sidebar-1.jpg')}}">
+        <div class="sidebar" data-color="blue" data-image="{{asset('public/img/sidebar-1.jpg')}}">
             <!--
                 Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
 
@@ -127,17 +127,17 @@
     @include('partials.htmltemplates')
     @include('partials.jsconfig')
     <!--   Core JS Files   -->
-    <script src="{{asset('/js/jquery-3.1.0.min.js')}}" type="text/javascript"></script>
-    <script src="{{asset('/js/bootstrap.min.js')}}" type="text/javascript"></script>
-    <script src="{{asset('/js/material.min.js')}}" type="text/javascript"></script>
+    <script src="{{asset('public/js/jquery-3.1.0.min.js')}}" type="text/javascript"></script>
+    <script src="{{asset('public/js/bootstrap.min.js')}}" type="text/javascript"></script>
+    <script src="{{asset('public/js/material.min.js')}}" type="text/javascript"></script>
     <!--  Google Maps Plugin    -->
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
 
     <!-- Material Dashboard javascript methods -->
-    <script src="{{asset('/js/material-dashboard.js')}}"></script>
+    <script src="{{asset('public/js/material-dashboard.js')}}"></script>
 
     <!-- Material Dashboard DEMO methods, don't include it in your project! -->
-    <script src="{{asset('/js/demo.js')}}"></script>
+    <script src="{{asset('public/js/demo.js')}}"></script>
 
     <script type="text/javascript">
         $(document).ready(function(){
