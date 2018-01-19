@@ -76,7 +76,7 @@ define(['jquery','config'], ($, appConfig) => {
 	 	}).catch(error => {
 	 		if(error != null) console.error(error)
 
-	 		ModuleCallback(error)
+	 		ModuleCallback(null)
 	 	})
 
 

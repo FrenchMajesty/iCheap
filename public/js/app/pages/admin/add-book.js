@@ -34,7 +34,15 @@ define(['jquery',
 
 		const isbn = $(e.target).find('input[name="isbn"]').val()
 		GoogleLibrary(isbn, (response) => {
-			if(!response) return
+			if(!response) {
+				BSNotify({
+					style: 'danger',
+					icon: 'error',
+					message: 'An error occured while trying to find and download your book\'s info.',
+				})
+
+				return
+			}
 
 			const formData = new FormData(e.target)
 			formData.append('image', response.image)
