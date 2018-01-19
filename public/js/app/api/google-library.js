@@ -37,7 +37,7 @@ define(['jquery','config'], ($, appConfig) => {
 	 				reject(null)
 	 			}
 	 		})
-	 		.catch(_ => reject(null))
+	 		.catch(error => reject(error))
 	 	})
 	 }
 
@@ -73,6 +73,10 @@ define(['jquery','config'], ($, appConfig) => {
 	 			}
 	 		})
 	 		.fail(_ => ModuleCallback(null))
+	 	}).catch(error => {
+	 		if(error != null) console.error(error)
+
+	 		ModuleCallback(error)
 	 	})
 
 
