@@ -59,7 +59,7 @@ define(['jquery','config'], ($, appConfig) => {
 	 					publisher: `${data.publisher} on ${data.publishedDate}`,
 	 					title: `${data.title} ${data.subtitle ? data.subtitle : ''}`,
 	 					description: data.description ? data.description : '',
-	 					image: data.imageLinks.medium,
+	 					image: data.imageLinks.medium ? data.imageLinks.medium : data.imageLinks.thumbnail,
 	 					dimensions: {
 	 						height: dim.height.match(/[\d\.]+/)[0],
 	 						width: dim.width.match(/[\d\.]+/)[0],
