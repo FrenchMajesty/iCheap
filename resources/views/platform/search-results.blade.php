@@ -7,7 +7,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4">
-                <a class="btn btn-arial" href="{{route('index')}}">Return to index</a>
+                <a class="btn btn-arial" href="{{route('index')}}">Return to Homepage</a>
             </div>
             <div class="col-md-8 col-md-offset-2">
                 <div class="product-content-right">
@@ -49,7 +49,7 @@
                                     <div class="tab-content">
                                         <div role="tabpanel" class="tab-pane fade in active" id="home">
                                             <h2>Product Description</h2>  
-                                            <p>{{$book->description}}</p>
+                                            <p>{!! $book->description !!}</p>
                                         </div>
                                         <div role="tabpanel" class="tab-pane fade" id="profile">
                                             <h2>Reviews</h2>
