@@ -45,7 +45,9 @@ class BookReceived extends Mailable
      */
     public function build()
     {
-        return $this->markdown('mail.order.book-received')
+        return $this->from(env('CONTACT_US_EMAIL'))
+                    ->replyTo(env('CONTACT_US_EMAIL'))
+                    ->markdown('mail.order.book-received')
                     ->subject('We just received the textbook we\'re buying from you!');
     }
 }

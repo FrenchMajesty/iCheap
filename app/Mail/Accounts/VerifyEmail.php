@@ -54,7 +54,8 @@ class VerifyEmail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('mail.accounts.verify')
+        return $this->from('no-reply@icheapbooks.com')
+                    ->markdown('mail.accounts.verify')
                     ->subject('Complete your registration on '.env('APP_NAME'));
     }
 }

@@ -45,7 +45,9 @@ class PaymentSent extends Mailable
      */
     public function build()
     {
-        return $this->markdown('mail.order.payment-sent')
+        return $this->from(env('CONTACT_US_EMAIL'))
+                    ->replyTo(env('CONTACT_US_EMAIL'))
+                    ->markdown('mail.order.payment-sent')
                     ->subject('You\'ve got money coming your way!');
     }
 }
